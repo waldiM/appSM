@@ -1,0 +1,31 @@
+<div ng-include src="'menu.html'"></div>
+<article class="portfolioCompanies">
+    
+    <div class="errorMessage" ng-if="companies.length == 0 && !loading">
+        You have no portfolio yet.
+    </div>
+
+    <div class="subMenu">
+        <a class="back" href="#portfolio-list"><i class="fa fa-angle-left"></i></a>
+        <div class="info">
+            <span class="name">Portfolio</span>
+            <span class="separator"><i class="fa fa-angle-right"></i></span>
+            <span class="title">{{portfolio.portfolio_title}}</span>
+        </div>
+    </div>
+
+    <div class="loading" ng-show="loading"></div>
+    
+    <div class="companies">
+        <ul>    
+            <li class="menuTab" ng-repeat="company in companies">
+                <a class="company" href="#company-dashboard/{{company.cmp_id}}/{{company.kind}}">
+                    <img class="flag" ng-src="http://swiss-metrics.com/files/img/flags/24/{{company.isoCountry2.toLowerCase()}}.png" alt="">
+                    <span>{{company.companyName}}</span>
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+        </ul>
+    </div>
+    
+</article>

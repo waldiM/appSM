@@ -1,0 +1,113 @@
+<div ng-include src="'menu.html'"></div>
+<article class="companyGeneral">
+    
+    <div class="subMenu">
+        <a class="back" href="" back-button><i class="fa fa-angle-left"></i></a>
+        <div class="info infoSubName">
+            <span class="name">{{ret.company.companyName}}</span>
+            <span class="subName">General Information</span>
+        </div>
+    </div>
+
+    <div class="loading" ng-show="loading"></div>   
+
+    <div class="boxes" ng-show="!loading">
+        
+        <div class="box" ng-show="ret.companyAddress">
+            <a class="bar" ng-click="showDetails = !showDetails">
+                <span class="icon"><i class="fa fa-globe"></i></span>
+                <span class="title">Contact Details</span>
+                <span class="arrow"><i class="fa" ng-class="{'fa-angle-up upArrow' : showDetails, 'fa-angle-down' : !showDetails}"></i></span>
+            </a>
+            <div class="collapse" ng-show="showDetails">
+                <div class="row">
+                    <span class="name">Address:</span><span class="value">{{ret.companyAddress}}</span>
+                </div>
+                <div class="row" ng-show="ret.company.webpage">
+                    <span class="name">Web page:</span><span class="value"><a href="http://{{(ret.company.webpage).replace('http://', '')}}">{{ret.company.webpage}}</a></span>
+                </div>
+                <div class="row" ng-show="ret.company.officePhone">
+                    <span class="name">Phone:</span><span class="value">{{ret.company.officePhone}}</span>
+                </div>
+            </div>
+        </div>
+    
+        <div class="box" ng-show="ret.company.companyStatusTypeName">
+            <a class="bar" ng-click="showDetailsAdditional = !showDetailsAdditional">
+                <span class="icon"><i class="fa fa-lightbulb-o"></i></span>
+                <span class="title">Additional Info</span>
+                <span class="arrow"><i class="fa" ng-class="{'fa-angle-up upArrow' : showDetailsAdditional, 'fa-angle-down' : !showDetailsAdditional}"></i></span>
+            </a>
+            <div class="collapse" ng-show="showDetailsAdditional">
+                <div class="row">
+                    <span class="name">Status:</span><span class="value">{{ret.company.companyStatusTypeName}}</span>
+                </div>
+                <div class="row" ng-show="ret.company.companyTypeName">
+                    <span class="name">Type:</span><span class="value">{{ret.company.companyTypeName}}</span>
+                </div>
+                <div class="row" ng-show="ret.company.yearFounded">
+                    <span class="name">Year founded:</span><span class="value">{{ret.company.yearFounded}}</span>
+                </div>
+                <div class="row" ng-show="ret.company.simpleIndustryDescription">
+                    <span class="name">Industry:</span><span class="value">{{ret.company.simpleIndustryDescription}}</span>
+                </div>
+                <div class="row rowTickers" ng-show="tickers">
+                    <span class="name">Ticker:</span>
+                    <span class="value">
+                        <ul>
+                            <li ng-repeat="ticker in tickers">
+                                <strong>{{ticker.tickerSymbol}}</strong>({{ticker.exchangeSymbol}})<em ng-show="!$last">,</em>
+                            </li>
+                        </ul>
+                    </span>
+                    <div class="clear"></div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="box" ng-show="ret.company.businessDescription">
+            <a class="bar" ng-click="showDetailsDesc = !showDetailsDesc">
+                <span class="icon"><i class="fa fa-info-circle"></i></span>
+                <span class="title">Company Description</span>
+                <span class="arrow"><i class="fa" ng-class="{'fa-angle-up upArrow' : showDetailsDesc, 'fa-angle-down' : !showDetailsDesc}"></i></span>
+            </a>
+            <div class="collapse" ng-show="showDetailsDesc">
+                <div class="row">
+                    <span class="value">{{ret.company.businessDescription}}</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- UK -->    
+        <div class="box" ng-show="ret.company.mortgages">
+            <a class="bar" ng-click="showDetailsUK = !showDetailsUK">
+                <span class="icon"><i class="fa fa-money"></i></span>
+                <span class="title">Mortgages</span>
+                <span class="arrow"><i class="fa" ng-class="{'fa-angle-up upArrow' : showDetailsUK, 'fa-angle-down' : !showDetailsUK}"></i></span>
+            </a>
+            <div class="collapse" ng-show="showDetailsUK">
+                <div class="row" ng-show="ret.company.mortgages.charges">
+                    <span class="name">Charges:</span><span class="value">{{ret.company.mortgages.charges}}</span>
+                </div>
+                <div class="row" ng-show="ret.company.mortgages.outstanding">
+                    <span class="name">Outstanding:</span><span class="value">{{ret.company.mortgages.outstanding}}</span>
+                </div>
+                <div class="row" ng-show="ret.company.mortgages.partSatisfied">
+                    <span class="name">PartSatisfied:</span><span class="value">{{ret.company.mortgages.partSatisfied}}</span>
+                </div>
+                <div class="row" ng-show="ret.company.mortgages.satisfied">
+                    <span class="name">Satisfied:</span><span class="value">{{ret.company.mortgages.satisfied}}</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="box">
+            <a class="bar" href="#notes/{{ret.companyKind.id}}/{{ret.companyKind.kind}}">
+                <span class="icon"><i class="fa fa-thumb-tack"></i></span>
+                <span class="title">Notes</span>
+                <span class="arrow"><i class="fa fa-angle-down"></i></span>
+            </a>
+        </div>
+        
+    </div>
+</article>

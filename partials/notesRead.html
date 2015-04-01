@@ -1,0 +1,45 @@
+<div ng-include src="'menu.html'"></div>
+<article class="noteRead">
+    
+    <div class="subMenu">
+        <a class="back" href="" back-button><i class="fa fa-angle-left"></i></a>
+        <div class="info infoSubName">
+            <span class="name">{{company.companyName}}</span>
+            <span class="subName">Notes</span>
+        </div>
+        <div class="navCompany"><i class="fa fa-bars"></i></div>
+    </div>
+    
+    <div class="loading" ng-show="loading"></div>
+    
+    <div class="notes" ng-show="!loading">
+        
+        <a class="addNew" href="#add-note/{{company.companyId}}/{{company.companyKind}}">
+            <i class="fa fa-plus"></i>
+            <span>Add new note</span>
+        </a>
+        
+        <div class="errorMessage" ng-if="notes.length == 0">
+            There are no notes for this company.
+        </div> 
+        
+        <div class="noteList">
+            <div class="note" ng-repeat="note in notes">
+                <div class="avatar" style="background-image: url(http://swiss-metrics.com/{{note.name ? 'uploads/avatars/'+note.name : 'files/img/blank_avatar.png'}})"></div>
+                <div class="info">
+                    <span class="light red" ng-if="note.traffic == 1"></span>
+                    <span class="light yellow" ng-if="note.traffic == 2"></span> 
+                    <span class="light green" ng-if="note.traffic == 3"></span> 
+                    <span class="author">{{note.firstname}} {{note.surname}}</span>
+                    <span class="date">{{unixDate(note.date) | date : 'd/M/yyyy, H:mm'}}</span>
+                    <div class="message">
+                        <strong>{{note.subject}}</strong>
+                        <div class="text">{{note.text}}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    
+</article>

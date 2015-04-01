@@ -1,0 +1,503 @@
+$menuColor: #282B33;
+$redColor:#eb0000;
+$insertedFontSize: 1.6em;
+$borderColor: #E8E8E8;
+$oddColor: #f6f6f6;
+$fontSizeMenu: 1.5em;
+$fontSizeMenuNav: 2.2em;
+
+body{
+    font-size: 14px;
+    font-family: arial, verdena, sans-serif;
+    margin:0;
+    padding:0;
+    color:#555;
+    background-color: #F2F2F2;
+}
+a{
+    text-decoration: none;
+    color:#686868;
+    &:hover{
+        text-decoration: none;
+    }
+}
+.clear{
+    clear:both;
+}
+.loading{
+    background:url(../img/ajax-loader.gif) no-repeat 50% 50%;
+    width:100%;
+    height:40px;
+}
+.error{
+    color:red;
+    text-align: center;
+    padding:5px 0;
+    font-size: 1.1em;
+}
+.errorMessage{
+    text-align: center;
+    padding:20px 0;
+    color:#444;
+    font-size: 1.1em;
+}
+ul{
+    margin:0;
+    padding:0;
+}
+li{
+    list-style: none;
+    margin:0;
+}
+li.menuTab{
+    border-bottom:1px solid $borderColor;
+    background-color: #fff;
+    &:nth-child(odd){
+        background-color:$oddColor;
+    }
+    &:hover{
+        background-color: #eee;
+    }
+    a{
+        color:#686868;
+        text-decoration:none;
+        padding: 15px;
+        &:hover{
+            color:#686868;
+            text-decoration:none;
+        }
+    }
+    .company{
+        display:block;
+        img{
+            margin:0 10px 0 0;
+            vertical-align: middle;
+        }
+        span{
+            font-size:$fontSizeMenu;
+            vertical-align: middle;
+        }
+        i{
+            float:right;
+            font-size: $fontSizeMenuNav;
+        }
+    }
+}
+.subMenu{
+    $heightMenu: 55px;
+    $paddingTop: 10px;
+    border-bottom: 2px solid $borderColor;
+    background-color:#fff;
+    min-height: $heightMenu;
+    .back{
+        font-size: $fontSizeMenuNav;
+        padding:$paddingTop 15px;
+        display: inline-block;
+        border-right: 1px solid $borderColor;
+        background-color:$oddColor;
+        vertical-align: middle;
+    }
+    .info{
+        display:inline-block;
+        vertical-align: middle;
+        padding:15px 0;
+        .name{
+            color:#000;
+            font-weight: bold;
+            font-size: $fontSizeMenu;
+            padding:0 0 0 15px;
+        }
+        .separator{
+            font-size: $fontSizeMenu;
+            padding: 0 10px;
+        }
+        .title{
+            font-size: $fontSizeMenu;
+            color: #999;
+        }
+    }
+    .infoSubName{
+        padding:0;
+        .subName{
+            display:block;
+            padding:0 0 0 15px;
+        }
+    }
+    .navCompany{
+        float:right;
+        height: $heightMenu - $paddingTop;
+        padding:$paddingTop 15px 0 15px;
+        background-color: $oddColor;
+        border-left: 1px solid $borderColor;
+        i{
+            font-size: $fontSizeMenuNav;
+        }
+    }
+}
+nav.mainManu{
+    background-color:$menuColor;
+    color:#fff;
+    border-bottom: 3px solid $redColor;
+    a{
+        display:block;
+        float:left;
+        color:#fff;
+    }
+    .logo{
+        background:url(../img/logo-white.png) no-repeat 50% 50%;
+        width:167px;
+        height:48px;
+        margin:12px 10px 12px 15px;
+    }
+    .rightMenu{
+        float:right;
+        a:hover{
+            background-color:#282828;
+        }
+        i{
+            padding: 22px 25px;
+            font-size: 2em;
+        }
+        .search{
+            border-left:1px solid #222;
+        }
+        .list{
+            border-left:1px solid #222;
+            border-right:1px solid #222;
+        }
+    }
+}
+article.homePage{
+    $borderInputs: #23242C;
+    $borderRadius: 5px;
+    $inputPadding: 20px;
+    background-color: $menuColor;
+    position:relative;
+    section.header{
+        background: url(../img/login-mountains.jpg) no-repeat 50% 0% #A11218;
+        background-size: 100% auto;
+        min-height: 200px;
+        max-height: 350px;
+        position:relative;
+        .logo{
+            background: url(../img/logo-white.png) 50% 50% no-repeat;
+            width: 100%;
+            height:48px;
+            position:absolute;
+            top:35%;
+        }
+        .arrow{
+            $imgW: 40px;
+            $imgH: 20px;
+            position:absolute;
+            bottom: -$imgH;
+            left:49%;
+            background: url(../img/login-mountains.jpg) no-repeat;
+            width: $imgW;
+            height: $imgH;
+            .arrowMask{
+                background: url(../img/login-arrow.png) no-repeat;
+                width: $imgW;
+                height: $imgH;
+            }
+        }
+    }
+    section.login{
+        .wrapperLogin{
+            width:70%;
+            margin:auto;
+        }
+        h1{
+            margin:0;
+            padding:60px 0 50px;
+            text-align:center;
+            color:#fff;
+            font-size: 2em;
+            font-weight:bold;
+        }
+        .boxLogin{
+            background-color: $borderInputs;
+            border-radius: $borderRadius;
+            padding: $borderRadius (2 * $inputPadding) + $borderRadius $borderRadius $borderRadius;
+        }
+        input#loginEmail{
+            border: medium none;
+            display: block;
+            margin: 0;
+            padding: $inputPadding;
+            font-size: $insertedFontSize;
+            border-radius: $borderRadius $borderRadius 0 0;
+            width: 100%;
+        }
+        input#loginPassword{
+            @extend input#loginEmail;
+            border-top: 1px solid #DFDFDF;
+            border-radius: 0 0 $borderRadius $borderRadius;
+        }
+        .loginError{
+            @extend .error;
+            padding: 0 0 15px;
+        }
+        .loginButton{
+            color:#fff;
+            font-weight:bold;
+            font-size:$insertedFontSize;
+            text-align: center;
+            padding:15px;
+            border-radius: $borderRadius;
+            border:2px solid $borderInputs;
+            background-color: $redColor;
+            width: 100%;
+            margin:20px 0;
+            display: inline-block;
+        }
+    }
+    section.forgotPassword{
+        position:absolute;
+        bottom:0;
+        width: 100%;
+        button{
+            color:#fff;
+            font-size:$insertedFontSize;
+            text-align: center;
+            padding:15px;
+            border:none;
+            background-color: $redColor;
+            width: 100%;
+        }
+    }
+
+}
+.boxesDashboard{
+    text-align: center;
+    .box{
+        display:inline-block;
+        border:1px solid $borderColor;
+        text-align: center;
+        min-width: 150px;
+        margin: 15px 0 0 15px;
+        background-color: #fff;
+        &:hover{
+            border-top:1px solid $redColor;
+        }
+    }
+    i{
+        font-size:5em;
+        padding:25px 0;
+        color:$redColor;
+    }
+    span{
+        border-top:2px solid $borderColor;
+        background-color: $oddColor;
+        text-align: center;
+        display:block;
+        padding: 10px 0;
+    }
+}
+article.companyGeneral{
+    .boxes{
+        .box{
+            display:block;
+            margin:15px;
+            border:1px solid $borderColor;
+            .bar{
+                $heightBar: 80px;
+                display:block;
+                background-color: #fff;
+                font-size:$fontSizeMenu;
+                height: $heightBar;
+                cursor:pointer;
+                .title{
+                    padding:20px 0 0;
+                    vertical-align: middle;
+                }
+                .icon i{
+                    font-size:1.8em;
+                    padding:21px 20px 0;
+                    color:$redColor;
+                    vertical-align: middle;
+                }
+                .arrow{
+                    i{
+                        float:right;
+                        padding:18px 20px 0 20px;
+                        font-size: $fontSizeMenuNav;
+                        border-left:1px solid $borderColor;
+                        height: $heightBar - 18px;
+                    }
+                    .upArrow{
+                        background-color: $oddColor;
+                    }
+                }
+            }
+            .collapse{
+                background-color: $oddColor;
+                .row{
+                    font-size:1.2em;
+                    padding:10px 0;
+                    margin: 0 15px;
+                    border-top: 1px solid $borderColor;
+                    &:first-child{
+                        border:none;
+                    }
+                    .name{
+                        font-weight: bold;
+                        min-width:150px;
+                        display: inline-block;
+                    }
+                }
+                .rowTickers{
+                    .name{
+                        float:left;
+                    }
+                    ul{
+                        float:left
+                    }
+                    li{
+                        display:inline;
+                    }
+                }
+            }
+        }
+    }
+}
+.light{
+    border-radius: 50%;
+    width:10px;
+    height:10px;
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0 5px;
+    &.red{
+        background-color: red;
+    }
+    &.yellow{
+        background-color: gold;
+    }
+    &.green{
+        background-color: green;
+    }
+}            
+article.noteRead{
+    .addNew{
+        border-bottom:2px solid $borderColor;
+        background-color:$oddColor;
+        font-size:$fontSizeMenu;
+        color: #999;
+        display:block;
+        i{
+            font-weight:bold;
+            padding: 10px 10px;
+            vertical-align: middle;
+        }
+    }
+    .note{
+        padding:10px 0;
+        border-bottom: 1px solid $borderColor;
+        background-color:#fff;
+        position:relative;
+        &:nth-child(even){
+            background-color:$oddColor;
+        }
+        .avatar{
+            margin:0 10px;
+            display:inline-block;
+            width:125px;
+            height:125px;
+            border:2px solid $borderColor;
+            border-radius: 6px;
+            vertical-align: top;
+            background-size: 100% 100%;
+        }
+        .info{
+            display:inline-block;
+            width: 65%;
+            .date{
+                position:absolute;
+                right:10px;
+                top:10px;
+                color: #999;
+            }
+            .author{
+                font-size:$fontSizeMenu;
+                vertical-align: middle;
+            }
+            .message{
+                padding: 5px 4px 2px;
+            }
+        }
+    }
+}
+article.addNote{
+    .inputSubject{
+        display: inline-block;
+        width:96%;
+        padding:1%;
+        margin:1%;
+        border:1px solid $borderColor;
+        font-size: $insertedFontSize;
+    }
+    .inputTextarea{
+        display: inline-block;
+        width:96%;
+        height: 160px;
+        padding:1%;
+        margin:0 1% 1% 1%;
+        border:1px solid $borderColor;
+        font-size: $insertedFontSize;
+    }
+    .error{
+        text-align: center;
+        padding: 20px 0 0;
+    }
+    .priority{
+        margin: 0 0 0 1%;
+        button{
+            width:33%;
+            border:1px solid $borderColor;
+            font-size: $insertedFontSize;
+            margin: 0;
+            padding: 20px 0;
+            float:left;
+            .light{
+                width: 15px;
+                height: 15px;
+                margin: 0 10px 0 0;
+            }
+        }
+    }
+    .errorMessage{
+        .btn{
+            padding: 10px 15px;
+            background-color:$menuColor;
+            color:#fff;
+            border-radius: 5px;
+        }
+    }
+}
+article.searchCompany{
+    .enterTxt{
+        border-bottom:2px solid $borderColor;
+        background-color:$oddColor;
+        display:block;
+        padding:10px 1%;
+        input{
+            border:2px solid $borderColor;
+            border-radius: 5px;
+            font-size: $insertedFontSize;
+            padding: 10px 1%;
+            width:80%;
+        }
+        button{
+            border:2px solid $borderColor;
+            border-radius: 5px;
+            font-size: $insertedFontSize;
+            padding: 10px;
+            background-color: #fff;
+            width:15%;
+        }
+        .error{
+            padding: 0 0 5px;
+        }
+    }
+}

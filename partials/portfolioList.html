@@ -1,0 +1,23 @@
+<div ng-include src="'menu.html'"></div>
+<article class="portfolioCompanies">
+
+    <div class="subMenu">
+        <div class="info">
+            <span class="name">Portfolio</span>
+        </div>
+    </div>
+    
+    <div class="loading" ng-show="loading"></div>
+    
+    <div class="portfolios">
+        <ul>    
+            <li class="menuTab" ng-repeat="portfolio in portfolios">
+                <a class="company" href="#portfolio/{{portfolio.portfolio_id}}">
+                    <span>{{portfolio.portfolio_title}}</span>
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+        </ul>
+    </div>
+    
+</article>

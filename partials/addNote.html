@@ -1,0 +1,29 @@
+<div ng-include src="'menu.html'"></div>
+<article class="addNote">  
+    
+    <div class="subMenu">
+        <a class="back" href="" back-button><i class="fa fa-angle-left"></i></a>
+        <div class="info infoSubName">
+            <span class="name">{{company.companyName}}</span>
+            <span class="subName">Add note</span>
+        </div>
+        <div class="navCompany"><i class="fa fa-bars"></i></div>
+    </div>
+    
+    <div class="errorMessage" ng-show="saveOk">
+        {{errorMessage}}<br><br>
+        <a class="btn" href="#notes/{{company.companyId}}/{{company.companyKind}}">Return to notes</a>
+    </div>
+
+    <form ng-show="!saveOk">
+        <div class="error">{{saveError}}</div>
+        <input class="inputSubject" type="text" placeholder="Subject" ng-model="addSubject">
+        <textarea class="inputTextarea" row="3" placeholder="Message" ng-model="addText"></textarea>
+        <div class="priority">
+            <button type="button" ng-click="saveNoteAction(1)"><span class="light red"></span>Negative</button>
+            <button type="button" ng-click="saveNoteAction(2)"><span class="light yellow"></span>Neutral</button>
+            <button type="button" ng-click="saveNoteAction(3)"><span class="light green"></span>Positive</button>
+        </div>
+    </form>
+    
+</article>

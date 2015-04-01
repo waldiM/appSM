@@ -1,0 +1,26 @@
+<article class="homePage">
+
+    <section class="header">
+        <div class="logo"></div>
+        <div class="arrow">
+            <div class="arrowMask"></div>
+        </div>
+    </section>    
+    
+    <section class="login">
+        <div class="wrapperLogin">
+            <h1>Login To Your Account</h1>
+            <div class="loginError">{{loginError}}</div>
+            <div class="boxLogin">
+                <input type="text" name="email" id="loginEmail" placeholder="Your email" ng-model="authEmail">
+                <input type="password" name="password" id="loginPassword" placeholder="Password" ng-model="authPassword">
+            </div>
+            <button type="button" class="loginButton" ng-click="loginAction()">Login</button>
+        </div>
+    </section>
+
+    <section class="forgotPassword">
+        <button>Forgot your password?</button>
+    </section>
+
+</article>
