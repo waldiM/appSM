@@ -21,7 +21,7 @@ swissCntls.controller('loginController', ['$scope', '$location', 'Auth', 'REST',
     //if is logged redirect to portfolio
     var token = Auth.get();
     
-    if(token.hash != 0){
+    if(token.hash && token.hash != 0){
         $location.path('portfolio');
     }
     
