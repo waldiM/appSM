@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="com.swiss-metrics.rwd" version="0.0.2" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>SwissMetrics</name>
+    <description>
+        Connetc to SwissMetrics
+    </description>
+    <author email="waldemar.matuszewski@swiss-metrics.com" href="https://swiss-metrics.com">SwissMetrics Team</author>
+    <content src="index.html" />
+    <access origin="*" />
+    <icon src="icon.png" />
+</widget>
