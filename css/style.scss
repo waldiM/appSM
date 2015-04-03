@@ -130,7 +130,6 @@ li.menuTab{
         padding:$paddingTop 15px 0 15px;
         background-color: $oddColor;
         border-left: 1px solid $borderColor;
-        cursor:pointer;
         i{
             font-size: $fontSizeMenuNav;
         }
@@ -309,7 +308,6 @@ nav.companyManu{
         font-size:$fontSizeMenuNav;
         padding:10px 0;
         background-color: $popBg;
-        cursor:pointer;
     }
     i{
         padding: 0 15px;
@@ -340,6 +338,7 @@ article.companyGeneral{
                 .title{
                     padding:20px 0 0;
                     vertical-align: middle;
+                    display: inline-block;
                 }
                 .icon i{
                     font-size:1.8em;
