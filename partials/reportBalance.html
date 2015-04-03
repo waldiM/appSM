@@ -1,0 +1,66 @@
+<div ng-include src="'menu.html'"></div>
+<article class="companyGeneral report">
+    
+    <div class="subMenu">
+        <a class="back" href="" back-button><i class="fa fa-angle-left"></i></a>
+        <div class="info infoSubName">
+            <span class="name">{{company.companyName}}</span>
+            <span class="subName">Balance Sheet</span>
+        </div>
+        <div class="navCompany"><i class="fa fa-bars"></i></div>
+        <div class="popupMenu">
+            <div class="barMenu"><i class="fa fa-bars"></i>{{company.companyName}}</div>
+            <div class="companyMenu" ng-include src="'partials/companyMenu.html'"></div>
+        </div>
+    </div>
+
+    <div class="loading" ng-show="loading"></div>   
+
+    <div class="boxes" ng-show="!loading">
+        
+        <div class="box">
+            <a class="bar" ng-click="showQuick = !showQuick">
+                <span class="icon"><i class="fa fa-line-chart"></i></span>
+                <span class="title">Quick ratio</span>
+                <span class="arrow"><i class="fa" ng-class="{'fa-angle-up upArrow' : showQuick, 'fa-angle-down' : !showQuick}"></i></span>
+            </a>
+            <div class="collapse" ng-show="showQuick">
+                
+            </div>
+        </div>
+    
+        <div class="box">
+            <a class="bar" ng-click="showLiquidity = !showLiquidity">
+                <span class="icon"><i class="fa fa-area-chart"></i></span>
+                <span class="title">Liquidity</span>
+                <span class="arrow"><i class="fa" ng-class="{'fa-angle-up upArrow' : showLiquidity, 'fa-angle-down' : !showLiquidity}"></i></span>
+            </a>
+            <div class="collapse" ng-show="showLiquidity">
+                
+            </div>
+        </div>
+        
+        <div class="box">
+            <a class="bar" ng-click="showWorking = !showWorking">
+                <span class="icon"><i class="fa fa-signal"></i></span>
+                <span class="title">Working Capital</span>
+                <span class="arrow"><i class="fa" ng-class="{'fa-angle-up upArrow' : showWorking, 'fa-angle-down' : !showWorking}"></i></span>
+            </a>
+            <div class="collapse" ng-show="showWorking">
+                
+            </div>
+        </div>
+        
+        <div class="box">
+            <a class="bar" ng-click="showRatio = !showRatio">
+                <span class="icon"><i class="fa fa-bar-chart"></i></span>
+                <span class="title">Choose ratio</span>
+                <span class="arrow"><i class="fa" ng-class="{'fa-angle-up upArrow' : showRatio, 'fa-angle-down' : !showRatio}"></i></span>
+            </a>
+            <div class="collapse" ng-show="showRatio">
+                
+            </div>
+        </div>
+        
+    </div>
+</article>

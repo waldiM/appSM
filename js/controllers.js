@@ -100,6 +100,8 @@ swissCntls.controller('portfolioController', ['$scope', '$location', '$routePara
 //Notes controller - read notes
 swissCntls.controller('notesReadController', ['$scope', '$location', '$routeParams', 'REST', function($scope, $location, $routeParams, REST) {
 
+    index.companyMenu();
+    
     $scope.notes = {};
     $scope.company = {};
     $scope.loading = true;    
@@ -132,6 +134,8 @@ swissCntls.controller('notesReadController', ['$scope', '$location', '$routePara
 //Add new note
 swissCntls.controller('addNoteController', ['$scope', '$routeParams', 'REST', function($scope, $routeParams, REST) { 
 
+    index.companyMenu();
+    
     $scope.saveOk = false;
     $scope.loading = true;
     $scope.addPriority = 3;
@@ -244,5 +248,71 @@ swissCntls.controller('searchController', ['$scope', '$location', 'REST', functi
             });
         }
     };
+
+}]);
+
+//Report controller - Risk summary
+swissCntls.controller('reportRiskController', ['$scope', '$location', '$routeParams', 'REST', function($scope, $location, $routeParams, REST) {
+
+    index.companyMenu();
+    
+    $scope.ret = {};
+    $scope.loading = true;    
+
+    REST.CompanyShort().get({companyId: $routeParams.companyId, companyKind: $routeParams.companyKind}, function(ret) {
+        if(ret.status == 'ok'){
+            $scope.company = ret.company;
+            $scope.loading = false;
+        }
+        else{
+            if(ret.logged == 'fail'){
+                $location.path('home');
+            }
+        }
+    });
+
+}]);
+
+//Report controller - P&L Statement
+swissCntls.controller('reportPLController', ['$scope', '$location', '$routeParams', 'REST', function($scope, $location, $routeParams, REST) {
+
+    index.companyMenu();
+    
+    $scope.ret = {};
+    $scope.loading = true;    
+
+    REST.CompanyShort().get({companyId: $routeParams.companyId, companyKind: $routeParams.companyKind}, function(ret) {
+        if(ret.status == 'ok'){
+            $scope.company = ret.company;
+            $scope.loading = false;
+        }
+        else{
+            if(ret.logged == 'fail'){
+                $location.path('home');
+            }
+        }
+    });
+
+}]);
+
+//Report controller - Balance Sheet
+swissCntls.controller('reportBalanceController', ['$scope', '$location', '$routeParams', 'REST', function($scope, $location, $routeParams, REST) {
+
+    index.companyMenu();
+    
+    $scope.ret = {};
+    $scope.loading = true;    
+
+    REST.CompanyShort().get({companyId: $routeParams.companyId, companyKind: $routeParams.companyKind}, function(ret) {
+        if(ret.status == 'ok'){
+            $scope.company = ret.company;
+            $scope.loading = false;
+        }
+        else{
+            if(ret.logged == 'fail'){
+                $location.path('home');
+            }
+        }
+    });
 
 }]);

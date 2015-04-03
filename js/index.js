@@ -43,6 +43,16 @@ var index = {
     //resize home page in bottom 
     stickBottom: function(){
         $('article.homePage').height($(window).height());
+    },
+    
+    //popUp company menu
+    companyMenu: function(){
+        $('.navCompany i').click(function(){
+           $(this).parent().next('.popupMenu').show();
+        });
+        $('.popupMenu .barMenu').click(function(){
+           $(this).parent('.popupMenu').hide();
+        });
     }
 };
 

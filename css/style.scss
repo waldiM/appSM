@@ -89,6 +89,7 @@ li.menuTab{
     border-bottom: 2px solid $borderColor;
     background-color:#fff;
     min-height: $heightMenu;
+    position:relative;
     .back{
         font-size: $fontSizeMenuNav;
         padding:$paddingTop 15px;
@@ -129,6 +130,7 @@ li.menuTab{
         padding:$paddingTop 15px 0 15px;
         background-color: $oddColor;
         border-left: 1px solid $borderColor;
+        cursor:pointer;
         i{
             font-size: $fontSizeMenuNav;
         }
@@ -268,14 +270,14 @@ article.homePage{
     }
 
 }
-.boxesDashboard{
+nav.companyManu{
     text-align: center;
     .box{
         display:inline-block;
         border:1px solid $borderColor;
         text-align: center;
         min-width: 150px;
-        margin: 15px 0 0 15px;
+        margin: 0 0 15px 15px;
         background-color: #fff;
         &:hover{
             border-top:1px solid $redColor;
@@ -292,6 +294,34 @@ article.homePage{
         text-align: center;
         display:block;
         padding: 10px 0;
+    }
+}
+.popupMenu{
+    $popBg: #3B3F4C;
+    position:absolute;
+    left:0;
+    top:0;
+    width: 100%;
+    z-index: 100;
+    display:none;
+    .barMenu{
+        color:#fff;
+        font-size:$fontSizeMenuNav;
+        padding:10px 0;
+        background-color: $popBg;
+        cursor:pointer;
+    }
+    i{
+        padding: 0 15px;
+    }
+    .companyMenu{
+        background-color: $popBg;
+        margin-left: 50px;
+    }
+}
+article.dashboard{
+    .boxesDashboard{
+        padding:15px 0 0;
     }
 }
 article.companyGeneral{
@@ -486,7 +516,7 @@ article.searchCompany{
             border-radius: 5px;
             font-size: $insertedFontSize;
             padding: 10px 1%;
-            width:80%;
+            width:76%;
         }
         button{
             border:2px solid $borderColor;
@@ -494,7 +524,7 @@ article.searchCompany{
             font-size: $insertedFontSize;
             padding: 10px;
             background-color: #fff;
-            width:15%;
+            width:20%;
         }
         .error{
             padding: 0 0 5px;

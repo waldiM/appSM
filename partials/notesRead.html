@@ -8,6 +8,10 @@
             <span class="subName">Notes</span>
         </div>
         <div class="navCompany"><i class="fa fa-bars"></i></div>
+        <div class="popupMenu">
+            <div class="barMenu"><i class="fa fa-bars"></i>{{company.companyName}}</div>
+            <div class="companyMenu" ng-include src="'partials/companyMenu.html'"></div>
+        </div>
     </div>
     
     <div class="loading" ng-show="loading"></div>
