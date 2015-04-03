@@ -102,6 +102,8 @@ li.menuTab{
         display:inline-block;
         vertical-align: middle;
         padding:15px 0;
+        white-space: nowrap;
+        width: 80%;
         .name{
             color:#000;
             font-weight: bold;
