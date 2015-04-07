@@ -376,8 +376,12 @@ article.companyGeneral .boxes .box {
 @media -sass-debug-info{filename{font-family:file\:\/\/\/home\/waldi\/Projects\/swissApp\/www\/css\/style\.scss}line{font-family:\00003388}}
     article.companyGeneral .boxes .box .collapse .rowTickers li {
       display: inline; }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/waldi\/Projects\/swissApp\/www\/css\/style\.scss}line{font-family:\00003392}}
+    article.companyGeneral .boxes .box .collapse .graph {
+      text-align: center;
+      margin: 5px; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/waldi\/Projects\/swissApp\/www\/css\/style\.scss}line{font-family:\00003396}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/waldi\/Projects\/swissApp\/www\/css\/style\.scss}line{font-family:\00003400}}
 .light {
   border-radius: 50%;
   width: 10px;
@@ -385,38 +389,38 @@ article.companyGeneral .boxes .box {
   display: inline-block;
   vertical-align: middle;
   margin: 0 5px; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/waldi\/Projects\/swissApp\/www\/css\/style\.scss}line{font-family:\00003403}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/waldi\/Projects\/swissApp\/www\/css\/style\.scss}line{font-family:\00003407}}
   .light.red {
     background-color: red; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/waldi\/Projects\/swissApp\/www\/css\/style\.scss}line{font-family:\00003406}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/waldi\/Projects\/swissApp\/www\/css\/style\.scss}line{font-family:\00003410}}
   .light.yellow {
     background-color: gold; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/waldi\/Projects\/swissApp\/www\/css\/style\.scss}line{font-family:\00003409}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/waldi\/Projects\/swissApp\/www\/css\/style\.scss}line{font-family:\00003413}}
   .light.green {
     background-color: green; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/waldi\/Projects\/swissApp\/www\/css\/style\.scss}line{font-family:\00003414}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/waldi\/Projects\/swissApp\/www\/css\/style\.scss}line{font-family:\00003418}}
 article.noteRead .addNew {
   border-bottom: 2px solid #e8e8e8;
   background-color: #f6f6f6;
   font-size: 1.5em;
   color: #999;
   display: block; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/waldi\/Projects\/swissApp\/www\/css\/style\.scss}line{font-family:\00003420}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/waldi\/Projects\/swissApp\/www\/css\/style\.scss}line{font-family:\00003424}}
   article.noteRead .addNew i {
     font-weight: bold;
     padding: 10px 10px;
     vertical-align: middle; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/waldi\/Projects\/swissApp\/www\/css\/style\.scss}line{font-family:\00003426}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/waldi\/Projects\/swissApp\/www\/css\/style\.scss}line{font-family:\00003430}}
 article.noteRead .note {
   padding: 10px 0;
   border-bottom: 1px solid #e8e8e8;
   background-color: #fff;
   position: relative; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/waldi\/Projects\/swissApp\/www\/css\/style\.scss}line{font-family:\00003431}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/waldi\/Projects\/swissApp\/www\/css\/style\.scss}line{font-family:\00003435}}
   article.noteRead .note:nth-child(even) {
     background-color: #f6f6f6; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/waldi\/Projects\/swissApp\/www\/css\/style\.scss}line{font-family:\00003434}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/waldi\/Projects\/swissApp\/www\/css\/style\.scss}line{font-family:\00003438}}
   article.noteRead .note .avatar {
     margin: 0 10px;
     display: inline-block;
@@ -426,25 +430,25 @@ article.noteRead .note {
     border-radius: 6px;
     vertical-align: top;
     background-size: 100% 100%; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/waldi\/Projects\/swissApp\/www\/css\/style\.scss}line{font-family:\00003444}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/waldi\/Projects\/swissApp\/www\/css\/style\.scss}line{font-family:\00003448}}
   article.noteRead .note .info {
     display: inline-block;
     width: 65%; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/waldi\/Projects\/swissApp\/www\/css\/style\.scss}line{font-family:\00003447}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/waldi\/Projects\/swissApp\/www\/css\/style\.scss}line{font-family:\00003451}}
     article.noteRead .note .info .date {
       position: absolute;
       right: 10px;
       top: 10px;
       color: #999; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/waldi\/Projects\/swissApp\/www\/css\/style\.scss}line{font-family:\00003453}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/waldi\/Projects\/swissApp\/www\/css\/style\.scss}line{font-family:\00003457}}
     article.noteRead .note .info .author {
       font-size: 1.5em;
       vertical-align: middle; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/waldi\/Projects\/swissApp\/www\/css\/style\.scss}line{font-family:\00003457}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/waldi\/Projects\/swissApp\/www\/css\/style\.scss}line{font-family:\00003461}}
     article.noteRead .note .info .message {
       padding: 5px 4px 2px; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/waldi\/Projects\/swissApp\/www\/css\/style\.scss}line{font-family:\00003464}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/waldi\/Projects\/swissApp\/www\/css\/style\.scss}line{font-family:\00003468}}
 article.addNote .inputSubject {
   display: inline-block;
   width: 96%;
@@ -452,7 +456,7 @@ article.addNote .inputSubject {
   margin: 1%;
   border: 1px solid #e8e8e8;
   font-size: 1.6em; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/waldi\/Projects\/swissApp\/www\/css\/style\.scss}line{font-family:\00003472}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/waldi\/Projects\/swissApp\/www\/css\/style\.scss}line{font-family:\00003476}}
 article.addNote .inputTextarea {
   display: inline-block;
   width: 96%;
@@ -461,14 +465,14 @@ article.addNote .inputTextarea {
   margin: 0 1% 1% 1%;
   border: 1px solid #e8e8e8;
   font-size: 1.6em; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/waldi\/Projects\/swissApp\/www\/css\/style\.scss}line{font-family:\00003481}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/waldi\/Projects\/swissApp\/www\/css\/style\.scss}line{font-family:\00003485}}
 article.addNote .error, article.addNote article.homePage section.login .loginError, article.homePage section.login article.addNote .loginError {
   text-align: center;
   padding: 20px 0 0; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/waldi\/Projects\/swissApp\/www\/css\/style\.scss}line{font-family:\00003485}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/waldi\/Projects\/swissApp\/www\/css\/style\.scss}line{font-family:\00003489}}
 article.addNote .priority {
   margin: 0 0 0 1%; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/waldi\/Projects\/swissApp\/www\/css\/style\.scss}line{font-family:\00003487}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/waldi\/Projects\/swissApp\/www\/css\/style\.scss}line{font-family:\00003491}}
   article.addNote .priority button {
     width: 33%;
     border: 1px solid #e8e8e8;
@@ -476,32 +480,32 @@ article.addNote .priority {
     margin: 0;
     padding: 20px 0;
     float: left; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/waldi\/Projects\/swissApp\/www\/css\/style\.scss}line{font-family:\00003494}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/waldi\/Projects\/swissApp\/www\/css\/style\.scss}line{font-family:\00003498}}
     article.addNote .priority button .light {
       width: 15px;
       height: 15px;
       margin: 0 10px 0 0; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/waldi\/Projects\/swissApp\/www\/css\/style\.scss}line{font-family:\00003502}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/waldi\/Projects\/swissApp\/www\/css\/style\.scss}line{font-family:\00003506}}
 article.addNote .errorMessage .btn {
   padding: 10px 15px;
   background-color: #282b33;
   color: #fff;
   border-radius: 5px; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/waldi\/Projects\/swissApp\/www\/css\/style\.scss}line{font-family:\00003511}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/waldi\/Projects\/swissApp\/www\/css\/style\.scss}line{font-family:\00003515}}
 article.searchCompany .enterTxt {
   border-bottom: 2px solid #e8e8e8;
   background-color: #f6f6f6;
   display: block;
   padding: 10px 1%; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/waldi\/Projects\/swissApp\/www\/css\/style\.scss}line{font-family:\00003516}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/waldi\/Projects\/swissApp\/www\/css\/style\.scss}line{font-family:\00003520}}
   article.searchCompany .enterTxt input {
     border: 2px solid #e8e8e8;
     border-radius: 5px;
     font-size: 1.6em;
     padding: 10px 1%;
     width: 76%; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/waldi\/Projects\/swissApp\/www\/css\/style\.scss}line{font-family:\00003523}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/waldi\/Projects\/swissApp\/www\/css\/style\.scss}line{font-family:\00003527}}
   article.searchCompany .enterTxt button {
     border: 2px solid #e8e8e8;
     border-radius: 5px;
@@ -509,6 +513,6 @@ article.searchCompany .enterTxt {
     padding: 10px;
     background-color: #fff;
     width: 20%; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/waldi\/Projects\/swissApp\/www\/css\/style\.scss}line{font-family:\00003531}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/waldi\/Projects\/swissApp\/www\/css\/style\.scss}line{font-family:\00003535}}
   article.searchCompany .enterTxt .error, article.searchCompany .enterTxt article.homePage section.login .loginError, article.homePage section.login article.searchCompany .enterTxt .loginError {
     padding: 0 0 5px; }

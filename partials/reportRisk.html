@@ -35,19 +35,21 @@
                 <span class="title">News Sentiment Index</span>
                 <span class="arrow"><i class="fa" ng-class="{'fa-angle-up upArrow' : showNews, 'fa-angle-down' : !showNews}"></i></span>
             </a>
-            <div class="collapse" ng-show="showZscore">
+            <div class="collapse" ng-show="showNews">
                 ...
             </div>
         </div>
         
         <div class="box">
-            <a class="bar" ng-click="showNotes = !showNotes">
+            <a class="bar" ng-click="(showNotes || loadedNotes) ? '' : chartNotes(); showNotes = !showNotes">
                 <span class="icon"><i class="fa fa-pencil-square-o"></i></span>
                 <span class="title">Notes</span>
                 <span class="arrow"><i class="fa" ng-class="{'fa-angle-up upArrow' : showNotes, 'fa-angle-down' : !showNotes}"></i></span>
             </a>
-            <div class="collapse" ng-show="showZscore">
-                ...
+            <div class="collapse" ng-show="showNotes">
+                <div class="graph graphNotes">
+                    <canvas width="400" height="200"></canvas>
+                </div>
             </div>
         </div>
         
@@ -64,3 +66,5 @@
         
     </div>
 </article>
+
+<script src="lib/chart/ChartNew.js"></script>

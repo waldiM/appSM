@@ -252,7 +252,7 @@ swissCntls.controller('searchController', ['$scope', '$location', 'REST', functi
 }]);
 
 //Report controller - Risk summary
-swissCntls.controller('reportRiskController', ['$scope', '$location', '$routeParams', 'REST', function($scope, $location, $routeParams, REST) {
+swissCntls.controller('reportRiskController', ['$scope', '$location', '$routeParams', 'REST', 'CHART', function($scope, $location, $routeParams, REST, CHART) {
 
     index.companyMenu();
     
@@ -270,6 +270,12 @@ swissCntls.controller('reportRiskController', ['$scope', '$location', '$routePar
             }
         }
     });
+    
+    //show graph
+    $scope.chartNotes = function(){
+        $scope.loadedNotes = CHART.getNotes($routeParams.companyId, $routeParams.companyKind);
+    };
+    
 
 }]);
 

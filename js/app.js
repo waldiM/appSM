@@ -1,7 +1,7 @@
 var swissApp = angular.module('swissApp', ['ngRoute', 'swissCntls', 'swissServices']);
 
-//swissApp.constant('API_SERVER', 'http://localhost/sm/api/rest/');
-swissApp.constant('API_SERVER', 'http://rwd.swiss-metrics.com/api/rest/');
+swissApp.constant('API_SERVER', 'http://localhost/sm/');
+//swissApp.constant('API_SERVER', 'http://rwd.swiss-metrics.com/');
 
 swissApp.config(['$routeProvider', function($routeProvider) {
     $routeProvider.
