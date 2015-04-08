@@ -89,6 +89,150 @@ swissServices.factory('Auth', [function(){
 // Charts requests - ajax
 swissServices.factory('CHART', ['$http', 'API_SERVER', 'Auth', function($http, API_SERVER, Auth){
     return {
+        // z-score
+        getZscore: function(companyId, companyKind){
+            
+            var token = Auth.get();
+            
+            var req = {
+                method: 'GET',
+                url: API_SERVER + 'ajax/charts/zScoreFormula/' + companyId + '/' + companyKind + '/A',
+                headers: {'Accesstoken': token.hash}
+            };
+            
+            $http(req).success(function(ret) {
+                
+                var ZA = ret.data.datasets[0].data;
+                var Z=[];
+                for(z in ZA){
+                    Z[z] = parseFloat(ZA[z]);
+                }
+
+                var minY = 0;
+                var maxY = 5;
+                var minZ = Math.min.apply(Math, Z);
+                var maxZ = Math.max.apply(Math, Z);
+
+                if(minZ < minY){
+                    minY = Math.floor(minZ - 1);
+                }
+                if(maxZ > maxY){
+                    maxY = Math.floor(maxZ + 1);
+                }
+
+                var graphClass = '.graphZscore';
+                var ctx = $(graphClass).children('.chart');
+                $(graphClass).children('.loading').remove();
+                
+                ctx.highcharts({
+                    chart: {
+                        type: 'spline',
+                        backgroundColor: 'transparent'
+                    },
+                    title: {
+                        text: ''
+                    },
+                    xAxis: {
+                        categories: ret.data.labels,
+                        labels:{
+                            rotation: ret.data.labels.length > 5 ? -45 : 0,
+                            style: {
+                                fontSize: '10px'
+                            }
+                        }
+                    },
+                    yAxis: {
+                        title: {
+                            text: ''
+                        },
+                        min: minY,
+                        max: maxY,
+                        minorGridLineWidth: 0,
+                        gridLineWidth: 0,
+                        alternateGridColor: null,
+                        plotBands: [{ 
+                            from: -200,
+                            to: 1.23,
+                            color: '#E68484',
+                            label: {
+                                text: 'Distress zone',
+                                style: {
+                                    color: '#777777'
+                                }
+                            }
+                        }, {
+                            from: 1.23,
+                            to: 2.9,
+                            color: '#DDE8F1',
+                            label: {
+                                text: 'Neutral zone',
+                                style: {
+                                    color: '#777777'
+                                }
+                            }
+                        }, {
+                            from: 2.9,
+                            to: 200,
+                            color: '#90CD7F',
+                            label: {
+                                text: 'Safe zone',
+                                style: {
+                                    color: '#777777'
+                                }
+                            }
+                        }]
+                    },
+                    plotOptions: {
+                        spline: {
+                            lineWidth: 4,
+                            states: {
+                                hover: {
+                                    lineWidth: 5
+                                }
+                            },
+                            marker: {
+                                enabled: true
+                            }
+                        }
+                    },
+                    series: [{
+                        showInLegend: false,
+                        name: 'Z-score',
+                        data: Z
+                    }],
+                    credits: {
+                        enabled: false
+                    },
+                    navigation: {
+                        menuItemStyle: {
+                            fontSize: '10px'
+                        }
+                    },
+                    tooltip: {
+
+                        shared: true,
+                        useHTML: true,
+
+                        formatter: function() {
+                                for(p in this.points){
+                                    var s = '<span style="color:#666666">'+this.points[p].x+'</span><br><strong>'+this.points[p].series.name+' = '+this.points[p].y+'</strong><br>';
+                                        s += 'Sum of:<br>';
+                                        s += '0.718(Total current assets - Total current liabilities)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; / Total assets<br>';
+                                        s += '0.847(Retained earnings / Total assets)<br>';
+                                        s += '3.107(LTM EBIT / Total assets)<br>';
+                                        s += '0.420(Total equity / Total liabilities)<br>';
+                                        s += '0.998(LTM revenue / Total assets)';
+                                }
+                                return s;
+                        }
+                    }
+                });
+            
+            }); 
+        
+            return true;
+        },
+        
         // notes
         getNotes: function(companyId, companyKind){
             var token = Auth.get();
@@ -107,12 +251,99 @@ swissServices.factory('CHART', ['$http', 'API_SERVER', 'Auth', function($http, A
                     scaleSteps : maxValue / step,
                     scaleStepWidth : step
                 };
-                var ctx = ($('.graphNotes').find('canvas')).get(0).getContext("2d");
-                var myBarChart = new Chart(ctx).Bar(ret.data, scaleSteps);
+                var graphClass = '.graphNotes';
+                var ctx = ($(graphClass).find('canvas')).get(0).getContext("2d");
+                new Chart(ctx).Bar(ret.data, scaleSteps);
+                $(graphClass).children('.loading').remove();
             });
             
             return true;
+        },
+        // news
+        getNews: function(companyId, companyKind, companyName){
+            var token = Auth.get();
+            var req = {
+                method: 'POST',
+                url: API_SERVER + 'ajax/rss/index/1',
+                headers: {'Accesstoken': token.hash, 'Content-Type': 'application/x-www-form-urlencoded'},
+                data: $.param({ companyId: companyId, companyKind: companyKind, query: companyName })
+            };
+            $http(req).success(function(ret) {
+                //code from charts.js            
+                var count = {negative: 0, positive: 0, neutral: 0};
+                var countContent = ret.content ? Object.keys(ret.content).length : 0;
+
+                for(c in ret.content) {
+
+                    //if sentiment is saved in DB
+                    if(ret.content[c].sentimentType){
+                        count = this.newsCountSentiment(ret.content[c].sentimentType, count);
+                        //wait until last request
+                        if(count.negative + count.positive + count.neutral === countContent){
+                            this.newsGetSentiment(count);
+                        }
+                    }
+                    else{
+                        var req2 = {
+                            method: 'POST',
+                            url: API_SERVER + 'ajax/charts/newsScore',
+                            headers: {'Accesstoken': token.hash, 'Content-Type': 'application/x-www-form-urlencoded'},
+                            data: $.param({ text: ret.content[c].description, newsId: ret.content[c].newsId ? ret.content[c].newsId : null })
+                        };
+                        $http(req2).success(function(ret) {
+                            if(ret.status == 'OK'){
+                                count = this.newsCountSentiment(ret.docSentiment.type, count);
+                            }
+                            //wait until last request
+                            if(count.negative + count.positive + count.neutral === countContent){
+                                this.newsGetSentiment(count);
+                            }
+                        });
+                    }
+                }
+            });
+            //count sentiment news
+            newsCountSentiment= function(type, count){
+                if(type == 'negative'){
+                    count.negative++;
+                }
+                else if(type == 'positive'){
+                    count.positive++;
+                }
+                else{
+                    count.neutral++;
+                }    
+
+                return count;
+            };
+            //show on news chart
+            newsGetSentiment= function(newsScore){
+                var req = {
+                    method: 'POST',
+                    url: API_SERVER + 'ajax/charts/news',
+                    headers: {'Accesstoken': token.hash, 'Content-Type': 'application/x-www-form-urlencoded'},
+                    data: $.param({ newsScore: newsScore })
+                };
+                $http(req).success(function(ret) {
+                    var maxValue = Math.max(newsScore.negative, newsScore.positive, newsScore.neutral);
+                    var step = Math.ceil(maxValue / 10);
+                    var scaleSteps = {
+                        scaleOverride : true,
+                        scaleStartValue : 0,
+                        scaleSteps : maxValue / step,
+                        scaleStepWidth : step
+                    };
+
+                    var graphClass = '.graphNews';
+                    var ctx = ($(graphClass).find('canvas')).get(0).getContext("2d");
+                    new Chart(ctx).Bar(ret.data, scaleSteps);
+                    $(graphClass).children('.loading').remove();
+                });
+            };
+        
+            return true;
         }
+        
     };
 }]);
 

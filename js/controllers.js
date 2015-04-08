@@ -271,11 +271,20 @@ swissCntls.controller('reportRiskController', ['$scope', '$location', '$routePar
         }
     });
     
-    //show graph
+    //show zscore
+    $scope.chartZscore = function(){
+        $scope.loadedZscore = CHART.getZscore($routeParams.companyId, $routeParams.companyKind.toLowerCase());
+    }; 
+    
+    //show notes
     $scope.chartNotes = function(){
-        $scope.loadedNotes = CHART.getNotes($routeParams.companyId, $routeParams.companyKind);
+        $scope.loadedNotes = CHART.getNotes($routeParams.companyId, $routeParams.companyKind.toLowerCase());
     };
     
+    //show news
+    $scope.chartNews = function(){
+        $scope.loadedNews = CHART.getNews($routeParams.companyId, $routeParams.companyKind.toLowerCase(), $scope.company.companyName);
+    };
 
 }]);
 
