@@ -259,6 +259,7 @@ swissServices.factory('CHART', ['$http', 'API_SERVER', 'Auth', function($http, A
             
             return true;
         },
+        
         // news
         getNews: function(companyId, companyKind, companyName){
             var token = Auth.get();
@@ -302,8 +303,9 @@ swissServices.factory('CHART', ['$http', 'API_SERVER', 'Auth', function($http, A
                     }
                 }
             });
+            
             //count sentiment news
-            newsCountSentiment= function(type, count){
+            newsCountSentiment = function(type, count){
                 if(type == 'negative'){
                     count.negative++;
                 }
@@ -316,8 +318,9 @@ swissServices.factory('CHART', ['$http', 'API_SERVER', 'Auth', function($http, A
 
                 return count;
             };
-            //show on news chart
-            newsGetSentiment= function(newsScore){
+            
+            //show news on chart
+            newsGetSentiment = function(newsScore){
                 var req = {
                     method: 'POST',
                     url: API_SERVER + 'ajax/charts/news',
@@ -340,9 +343,54 @@ swissServices.factory('CHART', ['$http', 'API_SERVER', 'Auth', function($http, A
                     $(graphClass).children('.loading').remove();
                 });
             };
-        
+            
             return true;
+        },
+        
+        //get items for financial report
+        getItems: function(companyId, companyKind, type, $scope){
+            var token = Auth.get();
+            var req = {
+                    method: 'GET',
+                    url: API_SERVER + 'financials/report/collection/' + type + '/' + companyKind + '/' + companyId + '/A',
+                    headers: {'Accesstoken': token.hash}
+            };
+            $http(req).success(function(ret) {
+                $scope.dataCiq = ret.ciqReport.items;
+                $scope.items = [];
+                for(r in ret.ciqReport.items){
+                    $scope.items.push({
+                        id: r, 
+                        label: ret.ciqReport.items[r][Object.keys(ret.ciqReport.items[r])[0]].dataItemName
+                    });
+                }
+                $scope.loadingItems = true;
+            });
+        },
+        
+        //new custom graph for given item
+        loadItem: function(itemId, itemName, boxId, type, $scope){
+            console.log($scope.dataCiq);
+            var dataCiq = {
+                item: $scope.dataCiq[itemId],
+                itemId: itemId,
+                name: itemName,
+                boxId: boxId,
+                type: type ? type : 'risk'
+            };
+            var req = {
+                    method: 'POST',
+                    url: API_SERVER + 'ajax/charts/custom',
+                    headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+                    data: $.param({ dataCiq: dataCiq })
+            };
+            $http(req).success(function(ret) {
+                var graphClass = '.graphCustom';
+                var ctx = ($(graphClass).find('canvas')).get(0).getContext("2d");
+                new Chart(ctx).Bar(ret.data, {});
+            });
         }
+        
         
     };
 }]);

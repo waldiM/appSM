@@ -38,6 +38,11 @@ swissCntls.controller('loginController', ['$scope', '$location', 'Auth', 'REST',
         });
     };
 
+    $scope.onKeyPress = function($event) {
+        if ($event.keyCode == 13) {
+           $scope.loginAction();
+        }
+     };
 }]);
 
 //Logout
@@ -256,9 +261,8 @@ swissCntls.controller('reportRiskController', ['$scope', '$location', '$routePar
 
     index.companyMenu();
     
-    $scope.ret = {};
     $scope.loading = true;    
-
+    
     REST.CompanyShort().get({companyId: $routeParams.companyId, companyKind: $routeParams.companyKind}, function(ret) {
         if(ret.status == 'ok'){
             $scope.company = ret.company;
@@ -286,6 +290,17 @@ swissCntls.controller('reportRiskController', ['$scope', '$location', '$routePar
         $scope.loadedNews = CHART.getNews($routeParams.companyId, $routeParams.companyKind.toLowerCase(), $scope.company.companyName);
     };
 
+    //show any ratio
+    $scope.selectedItem = { name: '4190' };
+    $scope.chartRatio = function(){
+        $scope.loadedNews = CHART.getItems($routeParams.companyId, $routeParams.companyKind.toLowerCase(), 'ratio', $scope);
+    };
+    
+    //load new item for graph
+    $scope.changeItem = function(){
+        $scope.loadedNews = CHART.loadItem($scope.selectedItem, $scope.selectedItem, 'custom_mobile_graph', 'ratio', $scope);
+    };
+    
 }]);
 
 //Report controller - P&L Statement

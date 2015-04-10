@@ -11,7 +11,7 @@
         <div class="wrapperLogin">
             <h1>Login To Your Account</h1>
             <div class="loginError">{{loginError}}</div>
-            <div class="boxLogin">
+            <div class="boxLogin" ng-keypress="onKeyPress($event)" >
                 <input type="text" name="email" id="loginEmail" placeholder="Your email" ng-model="authEmail">
                 <input type="password" name="password" id="loginPassword" placeholder="Password" ng-model="authPassword">
             </div>
