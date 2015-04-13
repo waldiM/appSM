@@ -396,6 +396,7 @@ swissServices.factory('CHART', ['$http', 'API_SERVER', 'Auth', function($http, A
         
         //new custom graph for given item
         loadItem: function(itemId, itemName, boxId, type, $scope, cssClass){
+            var token = Auth.get();
             var dataCiq = {
                 item: $scope.dataCiq[itemId],
                 itemId: itemId,
@@ -406,7 +407,7 @@ swissServices.factory('CHART', ['$http', 'API_SERVER', 'Auth', function($http, A
             var req = {
                     method: 'POST',
                     url: API_SERVER + 'ajax/charts/custom',
-                    headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+                    headers: {'Accesstoken': token.hash, 'Content-Type': 'application/x-www-form-urlencoded'},
                     data: $.param({ dataCiq: dataCiq })
             };
             $http(req).success(function(ret) {
@@ -419,6 +420,7 @@ swissServices.factory('CHART', ['$http', 'API_SERVER', 'Auth', function($http, A
         
         //Liquidity graph - calculatation are needed
         loadLiquidity: function(type, $scope, cssClass){
+            var token = Auth.get();
             var dataCiq = {
                 '1009': $scope.dataCiq['1009'],
                 '1096': $scope.dataCiq['1096']
@@ -426,7 +428,7 @@ swissServices.factory('CHART', ['$http', 'API_SERVER', 'Auth', function($http, A
             var req = {
                     method: 'POST',
                     url: API_SERVER + 'ajax/charts/liquidity/' + type,
-                    headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+                    headers: {'Accesstoken': token.hash, 'Content-Type': 'application/x-www-form-urlencoded'},
                     data: $.param({ dataCiq: dataCiq })
             };
             $http(req).success(function(ret) {
