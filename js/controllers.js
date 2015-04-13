@@ -291,20 +291,19 @@ swissCntls.controller('reportRiskController', ['$scope', '$location', '$routePar
     };
 
     //show any ratio
-    $scope.selectedItem = { name: '4190' };
     $scope.chartRatio = function(){
-        $scope.loadedNews = CHART.getItems($routeParams.companyId, $routeParams.companyKind.toLowerCase(), 'ratio', $scope);
+        $scope.loadedRatio = CHART.getItems($routeParams.companyId, $routeParams.companyKind.toLowerCase(), 'ratio', $scope, 'first');
     };
     
     //load new item for graph
     $scope.changeItem = function(){
-        $scope.loadedNews = CHART.loadItem($scope.selectedItem, $scope.selectedItem, 'custom_mobile_graph', 'ratio', $scope);
+        CHART.loadItem($scope.selectedItem, $scope.selectedItem, 'custom_mobile_graph', 'ratio', $scope);
     };
     
 }]);
 
 //Report controller - P&L Statement
-swissCntls.controller('reportPLController', ['$scope', '$location', '$routeParams', 'REST', function($scope, $location, $routeParams, REST) {
+swissCntls.controller('reportPLController', ['$scope', '$location', '$routeParams', 'REST', 'CHART', function($scope, $location, $routeParams, REST, CHART) {
 
     index.companyMenu();
     
@@ -323,10 +322,35 @@ swissCntls.controller('reportPLController', ['$scope', '$location', '$routeParam
         }
     });
 
+    //show Revenue
+    $scope.chartRevenue = function(){
+        $scope.loadedRevenue = CHART.getItems($routeParams.companyId, $routeParams.companyKind.toLowerCase(), 'income', $scope, 28, '.graphRevenue');
+    };
+    
+    //show EBITDA Margin
+    $scope.chartEbitda = function(){
+        $scope.loadedEbitda = CHART.getItems($routeParams.companyId, $routeParams.companyKind.toLowerCase(), 'income', $scope, 4047, '.graphEbitda');
+    };
+    
+    //show Net Income
+    $scope.chartNet = function(){
+        $scope.loadedNet = CHART.getItems($routeParams.companyId, $routeParams.companyKind.toLowerCase(), 'income', $scope, 15, '.graphNet');
+    };
+    
+    //show any ratio
+    $scope.chartRatio = function(){
+        $scope.loadedRatio = CHART.getItems($routeParams.companyId, $routeParams.companyKind.toLowerCase(), 'income', $scope, 'first');
+    };
+    
+    //load new item for graph
+    $scope.changeItem = function(){
+        CHART.loadItem($scope.selectedItem, $scope.selectedItem, 'custom_mobile_graph', 'income', $scope);
+    };
+    
 }]);
 
 //Report controller - Balance Sheet
-swissCntls.controller('reportBalanceController', ['$scope', '$location', '$routeParams', 'REST', function($scope, $location, $routeParams, REST) {
+swissCntls.controller('reportBalanceController', ['$scope', '$location', '$routeParams', 'REST', 'CHART', function($scope, $location, $routeParams, REST, CHART) {
 
     index.companyMenu();
     
@@ -345,4 +369,28 @@ swissCntls.controller('reportBalanceController', ['$scope', '$location', '$route
         }
     });
 
+    //show Quick ratio
+    $scope.chartQuick = function(){
+        $scope.loadedQuick = CHART.getItems($routeParams.companyId, $routeParams.companyKind.toLowerCase(), 'balance', $scope, 4121, '.graphQuick');
+    };
+    
+    //show Liquidity
+    $scope.chartLiquidity = function(){
+        $scope.loadedLiquidity = CHART.getItems($routeParams.companyId, $routeParams.companyKind.toLowerCase(), 'balance', $scope, true, '.graphLiquidity', 'charts.loadLiquidity');
+    };
+    
+    //show Working Capital
+    $scope.chartWorking = function(){
+        $scope.loadedWorking = CHART.getItems($routeParams.companyId, $routeParams.companyKind.toLowerCase(), 'balance', $scope, 4165, '.graphWorking');
+    };
+
+    //show any ratio
+    $scope.chartRatio = function(){
+        $scope.loadedRatio = CHART.getItems($routeParams.companyId, $routeParams.companyKind.toLowerCase(), 'balance', $scope, 'first');
+    };
+    
+    //load new item for graph
+    $scope.changeItem = function(){
+        CHART.loadItem($scope.selectedItem, $scope.selectedItem, 'custom_mobile_graph', 'income', $scope);
+    };
 }]);

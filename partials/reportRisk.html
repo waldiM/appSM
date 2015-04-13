@@ -61,7 +61,7 @@
         </div>
         
         <div class="box">
-            <a class="bar" ng-click="showRatio ? '' : chartRatio(); showRatio = !showRatio">
+            <a class="bar" ng-click="(showRatio || loadedRatio)? '' : chartRatio(); showRatio = !showRatio">
                 <span class="icon"><i class="fa fa-bar-chart"></i></span>
                 <span class="title">Choose ratio</span>
                 <span class="arrow"><i class="fa" ng-class="{'fa-angle-up upArrow' : showRatio, 'fa-angle-down' : !showRatio}"></i></span>
@@ -69,7 +69,7 @@
             <div class="collapse" ng-show="showRatio">
                 <div class="graph graphCustom">
                     <div class="loading" ng-show="!loadingItems"></div>
-                    <select class="selectItem" ng-show="loadingItems" ng-change = "changeItem()" ng-model = "selectedItem">
+                    <select class="selectItem" ng-show="loadingItems" ng-change="changeItem()" ng-model="selectedItem">
                         <option ng-repeat="item in items" value="{{item.id}}">{{item.label}}</option>
                     </select>
                     <br>

@@ -88,7 +88,7 @@ swissServices.factory('Auth', [function(){
 
 // Charts requests - ajax
 swissServices.factory('CHART', ['$http', 'API_SERVER', 'Auth', function($http, API_SERVER, Auth){
-    return {
+    var charts = {
         // z-score
         getZscore: function(companyId, companyKind){
             
@@ -348,29 +348,54 @@ swissServices.factory('CHART', ['$http', 'API_SERVER', 'Auth', function($http, A
         },
         
         //get items for financial report
-        getItems: function(companyId, companyKind, type, $scope){
-            var token = Auth.get();
-            var req = {
-                    method: 'GET',
-                    url: API_SERVER + 'financials/report/collection/' + type + '/' + companyKind + '/' + companyId + '/A',
-                    headers: {'Accesstoken': token.hash}
-            };
-            $http(req).success(function(ret) {
-                $scope.dataCiq = ret.ciqReport.items;
-                $scope.items = [];
-                for(r in ret.ciqReport.items){
-                    $scope.items.push({
-                        id: r, 
-                        label: ret.ciqReport.items[r][Object.keys(ret.ciqReport.items[r])[0]].dataItemName
-                    });
+        //showItemId - number, false - not load chart, first - load chart for first itemId
+        getItems: function(companyId, companyKind, type, $scope, showItemId, cssClass, specificFunction){
+            
+            this.getItems.loadGraph = function(){
+                if(showItemId == 'first'){
+                    var firstItem = $scope.items[Object.keys($scope.items)[0]];
+                    $scope.selectedItem = firstItem.id;
+                    showItemId = firstItem.id;
                 }
-                $scope.loadingItems = true;
-            });
+                if(specificFunction){
+                    eval(specificFunction + '(type, $scope, cssClass)');
+                }
+                else{
+                    charts.loadItem(showItemId, showItemId, 'custom_mobile_graph', type, $scope, cssClass);
+                }
+            };
+            
+            if(!$scope.items){
+                var token = Auth.get();
+                var req = {
+                        method: 'GET',
+                        url: API_SERVER + 'financials/report/collection/' + type + '/' + companyKind + '/' + companyId + '/A',
+                        headers: {'Accesstoken': token.hash}
+                };
+                $http(req).success(function(ret) {
+                    $scope.dataCiq = $.extend(ret.ciqReport.items, ret.ciqToGraphs.items);
+                    $scope.items = [];
+                    for(r in ret.ciqReport.items){
+                        $scope.items.push({
+                            id: r, 
+                            label: ret.ciqReport.items[r][Object.keys(ret.ciqReport.items[r])[0]].dataItemName
+                        });
+                    }
+
+                    $scope.loadingItems = true;
+                    charts.getItems.loadGraph();
+
+                });
+            }
+            else if (showItemId){
+                charts.getItems.loadGraph();
+            }
+            
+            return true;
         },
         
         //new custom graph for given item
-        loadItem: function(itemId, itemName, boxId, type, $scope){
-            console.log($scope.dataCiq);
+        loadItem: function(itemId, itemName, boxId, type, $scope, cssClass){
             var dataCiq = {
                 item: $scope.dataCiq[itemId],
                 itemId: itemId,
@@ -385,13 +410,35 @@ swissServices.factory('CHART', ['$http', 'API_SERVER', 'Auth', function($http, A
                     data: $.param({ dataCiq: dataCiq })
             };
             $http(req).success(function(ret) {
-                var graphClass = '.graphCustom';
+                var graphClass = cssClass ? cssClass : '.graphCustom';
                 var ctx = ($(graphClass).find('canvas')).get(0).getContext("2d");
                 new Chart(ctx).Bar(ret.data, {});
             });
+            
+        },
+        
+        //Liquidity graph - calculatation are needed
+        loadLiquidity: function(type, $scope, cssClass){
+            var dataCiq = {
+                '1009': $scope.dataCiq['1009'],
+                '1096': $scope.dataCiq['1096']
+            };
+            var req = {
+                    method: 'POST',
+                    url: API_SERVER + 'ajax/charts/liquidity/' + type,
+                    headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+                    data: $.param({ dataCiq: dataCiq })
+            };
+            $http(req).success(function(ret) {
+                var graphClass = cssClass;
+                var ctx = ($(graphClass).find('canvas')).get(0).getContext("2d");
+                new Chart(ctx).Bar(ret.data, {});
+            });
+            
         }
         
-        
     };
+    
+    return charts;
 }]);
 

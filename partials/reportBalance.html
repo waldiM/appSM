@@ -19,48 +19,66 @@
     <div class="boxes" ng-show="!loading">
         
         <div class="box">
-            <a class="bar" ng-click="showQuick = !showQuick">
+            <a class="bar" ng-click="(showQuick || loadedQuick) ? '' : chartQuick(); showQuick = !showQuick">
                 <span class="icon"><i class="fa fa-line-chart"></i></span>
                 <span class="title">Quick ratio</span>
                 <span class="arrow"><i class="fa" ng-class="{'fa-angle-up upArrow' : showQuick, 'fa-angle-down' : !showQuick}"></i></span>
             </a>
             <div class="collapse" ng-show="showQuick">
-                
+                <div class="graph graphQuick">
+                    <div class="loading" ng-show="!loadingItems"></div>  
+                    <canvas width="400" height="200"></canvas>
+                </div>
             </div>
         </div>
     
         <div class="box">
-            <a class="bar" ng-click="showLiquidity = !showLiquidity">
+            <a class="bar" ng-click="(showLiquidity || loadedLiquidity) ? '' : chartLiquidity(); showLiquidity = !showLiquidity">
                 <span class="icon"><i class="fa fa-area-chart"></i></span>
                 <span class="title">Liquidity</span>
                 <span class="arrow"><i class="fa" ng-class="{'fa-angle-up upArrow' : showLiquidity, 'fa-angle-down' : !showLiquidity}"></i></span>
             </a>
             <div class="collapse" ng-show="showLiquidity">
-                
+                <div class="graph graphLiquidity">
+                    <div class="loading" ng-show="!loadingItems"></div>  
+                    <canvas width="400" height="200"></canvas>
+                </div>
             </div>
         </div>
         
         <div class="box">
-            <a class="bar" ng-click="showWorking = !showWorking">
+            <a class="bar" ng-click="(showWorking || loadedWorking) ? '' : chartWorking(); showWorking = !showWorking">
                 <span class="icon"><i class="fa fa-signal"></i></span>
                 <span class="title">Working Capital</span>
                 <span class="arrow"><i class="fa" ng-class="{'fa-angle-up upArrow' : showWorking, 'fa-angle-down' : !showWorking}"></i></span>
             </a>
             <div class="collapse" ng-show="showWorking">
-                
+                <div class="graph graphWorking">
+                    <div class="loading" ng-show="!loadingItems"></div>  
+                    <canvas width="400" height="200"></canvas>
+                </div>
             </div>
         </div>
         
         <div class="box">
-            <a class="bar" ng-click="showRatio = !showRatio">
+            <a class="bar" ng-click="(showRatio || loadedRatio) ? '' : chartRatio(); showRatio = !showRatio">
                 <span class="icon"><i class="fa fa-bar-chart"></i></span>
                 <span class="title">Choose ratio</span>
                 <span class="arrow"><i class="fa" ng-class="{'fa-angle-up upArrow' : showRatio, 'fa-angle-down' : !showRatio}"></i></span>
             </a>
             <div class="collapse" ng-show="showRatio">
-                
+                <div class="graph graphCustom">
+                    <div class="loading" ng-show="!loadingItems"></div>
+                    <select class="selectItem" ng-show="loadingItems" ng-change="changeItem()" ng-model="selectedItem">
+                        <option ng-repeat="item in items" value="{{item.id}}">{{item.label}}</option>
+                    </select>
+                    <br>
+                    <canvas width="400" height="200"></canvas>
+                </div>
             </div>
         </div>
         
     </div>
 </article>
+
+<script src="lib/chart/ChartNew.js"></script>
