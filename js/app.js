@@ -33,13 +33,19 @@ swissApp.config(['$routeProvider', function($routeProvider) {
             templateUrl: 'partials/search.html',
             controller: 'searchController'
         }).when('/reportRisk/:companyId/:companyKind', {
-            templateUrl: 'partials/reportRisk.html',
+            templateUrl: function(params){
+                return 'partials/reportRisk-' + params.companyKind + '.html';
+            },
             controller: 'reportRiskController'
         }).when('/reportPL/:companyId/:companyKind', {
-            templateUrl: 'partials/reportPL.html',
+            templateUrl: function(params){
+                return 'partials/reportPL-' + params.companyKind + '.html';
+            },
             controller: 'reportPLController'
         }).when('/reportBalance/:companyId/:companyKind', {
-            templateUrl: 'partials/reportBalance.html',
+            templateUrl: function(params){
+                return 'partials/reportBalance-' + params.companyKind + '.html';
+            },
             controller: 'reportBalanceController'
         }).otherwise({
             redirectTo: '/home'

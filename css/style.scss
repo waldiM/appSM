@@ -133,6 +133,7 @@ li.menuTab{
         padding:$paddingTop 15px 0 15px;
         background-color: $oddColor;
         border-left: 1px solid $borderColor;
+        cursor:pointer;
         i{
             font-size: $fontSizeMenuNav;
         }

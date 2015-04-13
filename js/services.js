@@ -347,7 +347,7 @@ swissServices.factory('CHART', ['$http', 'API_SERVER', 'Auth', function($http, A
             return true;
         },
         
-        //get items for financial report
+        //get items for financial report - CIQ
         //showItemId - number, false - not load chart, first - load chart for first itemId
         getItems: function(companyId, companyKind, type, $scope, showItemId, cssClass, specificFunction){
             
@@ -435,8 +435,40 @@ swissServices.factory('CHART', ['$http', 'API_SERVER', 'Auth', function($http, A
                 new Chart(ctx).Bar(ret.data, {});
             });
             
-        }
+        },
         
+        //get items for financial report - Private
+        getItemsPriv: function(companyId, companyKind, type, $scope, showItemId, cssClass, specificFunction){
+            
+            if(!$scope.items){
+                var token = Auth.get();
+                var req = {
+                        method: 'GET',
+                        url: API_SERVER + 'financials/report/collection/' + type + '/' + companyKind + '/' + companyId + '/A',
+                        headers: {'Accesstoken': token.hash}
+                };
+                $http(req).success(function(ret) {
+                    $scope.dataCiq = $.extend(ret.ciqReport.items, ret.ciqToGraphs.items);
+                    $scope.items = [];
+                    for(r in ret.ciqReport.items){
+                        $scope.items.push({
+                            id: r, 
+                            label: ret.ciqReport.items[r][Object.keys(ret.ciqReport.items[r])[0]].dataItemName
+                        });
+                    }
+
+                    $scope.loadingItems = true;
+                    charts.getItems.loadGraph();
+
+                });
+            }
+            else if (showItemId){
+                charts.getItems.loadGraph();
+            }
+            
+            return true;
+        }
+
     };
     
     return charts;

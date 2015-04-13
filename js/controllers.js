@@ -322,29 +322,33 @@ swissCntls.controller('reportPLController', ['$scope', '$location', '$routeParam
         }
     });
 
+    var kind = $routeParams.companyKind.toLowerCase();
+    
+    //CIQ Companies
     //show Revenue
     $scope.chartRevenue = function(){
-        $scope.loadedRevenue = CHART.getItems($routeParams.companyId, $routeParams.companyKind.toLowerCase(), 'income', $scope, 28, '.graphRevenue');
+        $scope.loadedRevenue = CHART.getItems($routeParams.companyId, kind, 'income', $scope, 28, '.graphRevenue');
     };
-    
     //show EBITDA Margin
     $scope.chartEbitda = function(){
-        $scope.loadedEbitda = CHART.getItems($routeParams.companyId, $routeParams.companyKind.toLowerCase(), 'income', $scope, 4047, '.graphEbitda');
+        $scope.loadedEbitda = CHART.getItems($routeParams.companyId, kind, 'income', $scope, 4047, '.graphEbitda');
     };
-    
     //show Net Income
     $scope.chartNet = function(){
-        $scope.loadedNet = CHART.getItems($routeParams.companyId, $routeParams.companyKind.toLowerCase(), 'income', $scope, 15, '.graphNet');
+        $scope.loadedNet = CHART.getItems($routeParams.companyId, kind, 'income', $scope, 15, '.graphNet');
     };
-    
     //show any ratio
     $scope.chartRatio = function(){
-        $scope.loadedRatio = CHART.getItems($routeParams.companyId, $routeParams.companyKind.toLowerCase(), 'income', $scope, 'first');
+        $scope.loadedRatio = CHART.getItems($routeParams.companyId, kind, 'income', $scope, 'first');
     };
-    
     //load new item for graph
     $scope.changeItem = function(){
         CHART.loadItem($scope.selectedItem, $scope.selectedItem, 'custom_mobile_graph', 'income', $scope);
+    };
+    
+    //Private Companies
+    $scope.chartRevenuePriv = function(){
+        $scope.loadedRevenue = CHART.getItemsPriv($routeParams.companyId, kind, 'income', $scope, 28, '.graphRevenue');
     };
     
 }]);
