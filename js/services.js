@@ -351,6 +351,8 @@ swissServices.factory('CHART', ['$http', 'API_SERVER', 'Auth', function($http, A
         //showItemId - number, false - not load chart, first - load chart for first itemId
         getItems: function(companyId, companyKind, type, $scope, showItemId, cssClass, specificFunction){
             
+            var token = Auth.get();
+            
             this.getItems.loadGraph = function(){
                 if(showItemId == 'first'){
                     var firstItem = $scope.items[Object.keys($scope.items)[0]];
@@ -366,29 +368,28 @@ swissServices.factory('CHART', ['$http', 'API_SERVER', 'Auth', function($http, A
             };
             
             if(!$scope.items){
-                var token = Auth.get();
                 var req = {
                         method: 'GET',
                         url: API_SERVER + 'financials/report/collection/' + type + '/' + companyKind + '/' + companyId + '/A/?rnd=' + Math.random(),
                         headers: {'Accesstoken': token.hash}
                 };
                 $http(req).success(function(ret) {
-                    $scope.dataCiq = $.extend(ret.ciqReport.items, ret.ciqToGraphs.items);
-                    $scope.items = [];
-                    for(r in ret.ciqReport.items){
-                        $scope.items.push({
-                            id: r, 
-                            label: ret.ciqReport.items[r][Object.keys(ret.ciqReport.items[r])[0]].dataItemName
-                        });
-                    }
+//                    $scope.dataCiq = $.extend(ret.ciqReport.items, ret.ciqToGraphs.items);
+//                    $scope.items = [];
+//                    for(r in ret.ciqReport.items){
+//                        $scope.items.push({
+//                            id: r, 
+//                            label: ret.ciqReport.items[r][Object.keys(ret.ciqReport.items[r])[0]].dataItemName
+//                        });
+//                    }
 
                     $scope.loadingItems = true;
-                    charts.getItems.loadGraph();
+                   // charts.getItems.loadGraph();
 
                 });
             }
             else if (showItemId){
-                charts.getItems.loadGraph();
+             //   charts.getItems.loadGraph();
             }
             
             return true;

@@ -66,7 +66,7 @@ swissCntls.controller('portfolioListController', ['$scope', '$location', 'REST',
         }
         else{
             if(ret.logged == 'fail'){
-                $location.path('home');
+                $location.path('logout');
             }
         }
     });
@@ -90,7 +90,7 @@ swissCntls.controller('portfolioController', ['$scope', '$location', '$routePara
             }
             else{
                 if(ret.logged == 'fail'){
-                    $location.path('home');
+                    $location.path('logout');
                 }
             }
         });
@@ -119,7 +119,7 @@ swissCntls.controller('notesReadController', ['$scope', '$location', '$routePara
         }
         else{
             if(ret.logged == 'fail'){
-                $location.path('home');
+                $location.path('logout');
             }
         }
     });
@@ -132,7 +132,7 @@ swissCntls.controller('notesReadController', ['$scope', '$location', '$routePara
         d.setHours(hStr[0]);
         d.setMinutes(hStr[1]);
         return d.getTime();
-    }
+    };
 
 }]);
 
@@ -154,7 +154,7 @@ swissCntls.controller('addNoteController', ['$scope', '$routeParams', 'REST', fu
         }
         else{
             if(ret.logged == 'fail'){
-                $location.path('home');
+                $location.path('logout');
             }
         }
     });
@@ -201,7 +201,7 @@ swissCntls.controller('companyDashboardController', ['$scope', '$location', '$ro
         }
         else{
             if(ret.logged == 'fail'){
-                $location.path('home');
+                $location.path('logout');
             }
         }
     });
@@ -222,7 +222,7 @@ swissCntls.controller('companyController', ['$scope', '$location', '$routeParams
         }
         else{
             if(ret.logged == 'fail'){
-                $location.path('home');
+                $location.path('logout');
             }
         }
     });
@@ -247,7 +247,7 @@ swissCntls.controller('searchController', ['$scope', '$location', 'REST', functi
                 }
                 else{
                     if(ret.logged == 'fail'){
-                        $location.path('home');
+                        $location.path('logout');
                     }
                 }
             });
@@ -270,7 +270,7 @@ swissCntls.controller('reportRiskController', ['$scope', '$location', '$routePar
         }
         else{
             if(ret.logged == 'fail'){
-                $location.path('home');
+                $location.path('logout');
             }
         }
     });
@@ -317,7 +317,7 @@ swissCntls.controller('reportPLController', ['$scope', '$location', '$routeParam
         }
         else{
             if(ret.logged == 'fail'){
-                $location.path('home');
+                $location.path('logout');
             }
         }
     });
@@ -368,7 +368,7 @@ swissCntls.controller('reportBalanceController', ['$scope', '$location', '$route
         }
         else{
             if(ret.logged == 'fail'){
-                $location.path('home');
+                $location.path('logout');
             }
         }
     });
