@@ -370,19 +370,18 @@ swissServices.factory('CHART', ['$http', 'API_SERVER', 'Auth', function($http, A
             if(!$scope.items){
                 var req = {
                         method: 'GET',
-                        url: API_SERVER + 'ajax/charts/notes/' + companyId + '/' + companyKind,
-                      //  url: API_SERVER + 'financials/report/collection/' + type + '/' + companyKind + '/' + companyId + '/A/?rnd=' + Math.random(),
+                        url: API_SERVER + 'financials/report/collection/' + type + '/' + companyKind + '/' + companyId + '/A/?rnd=' + Math.random(),
                         headers: {'Accesstoken': token.hash}
                 };
                 $http(req).success(function(ret) {
-//                    $scope.dataCiq = $.extend(ret.ciqReport.items, ret.ciqToGraphs.items);
-//                    $scope.items = [];
-//                    for(r in ret.ciqReport.items){
-//                        $scope.items.push({
-//                            id: r, 
-//                            label: ret.ciqReport.items[r][Object.keys(ret.ciqReport.items[r])[0]].dataItemName
-//                        });
-//                    }
+                    $scope.dataCiq = $.extend(ret.ciqReport.items, ret.ciqToGraphs.items);
+                    $scope.items = [];
+                    for(r in ret.ciqReport.items){
+                        $scope.items.push({
+                            id: r, 
+                            label: ret.ciqReport.items[r][Object.keys(ret.ciqReport.items[r])[0]].dataItemName
+                        });
+                    }
 
                     $scope.loadingItems = true;
                    // charts.getItems.loadGraph();
