@@ -47,7 +47,7 @@
         </div>
         
         <div class="box">
-            <a class="bar" ng-click="chartNotes(); showNotes = !showNotes">
+            <a class="bar" ng-click="(showNotes || loadedNotes) ? '' : chartNotes(); showNotes = !showNotes">
                 <span class="icon"><i class="fa fa-pencil-square-o"></i></span>
                 <span class="title">Notes</span>
                 <span class="arrow"><i class="fa" ng-class="{'fa-angle-up upArrow' : showNotes, 'fa-angle-down' : !showNotes}"></i></span>
@@ -61,7 +61,7 @@
         </div>
         
         <div class="box">
-            <a class="bar" ng-click="chartRatio(); showRatio = !showRatio">
+            <a class="bar" ng-click="(showRatio || loadedRatio)? '' : chartRatio(); showRatio = !showRatio">
                 <span class="icon"><i class="fa fa-bar-chart"></i></span>
                 <span class="title">Choose ratio</span>
                 <span class="arrow"><i class="fa" ng-class="{'fa-angle-up upArrow' : showRatio, 'fa-angle-down' : !showRatio}"></i></span>

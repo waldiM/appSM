@@ -238,7 +238,7 @@ swissServices.factory('CHART', ['$http', 'API_SERVER', 'Auth', function($http, A
             var token = Auth.get();
             var req = {
                 method: 'GET',
-                url: API_SERVER + 'ajax/charts/notes/' + companyId + '/' + companyKind + '/?rnd=' + Math.random(),
+                url: API_SERVER + 'ajax/charts/notes/' + companyId + '/' + companyKind,
                 headers: {'Accesstoken': token.hash}
                 //data: { test: 'test' }
             };
@@ -370,7 +370,8 @@ swissServices.factory('CHART', ['$http', 'API_SERVER', 'Auth', function($http, A
             if(!$scope.items){
                 var req = {
                         method: 'GET',
-                        url: API_SERVER + 'financials/report/collection/' + type + '/' + companyKind + '/' + companyId + '/A/?rnd=' + Math.random(),
+                        url: API_SERVER + 'ajax/charts/notes/' + companyId + '/' + companyKind,
+                      //  url: API_SERVER + 'financials/report/collection/' + type + '/' + companyKind + '/' + companyId + '/A/?rnd=' + Math.random(),
                         headers: {'Accesstoken': token.hash}
                 };
                 $http(req).success(function(ret) {
