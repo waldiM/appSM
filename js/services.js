@@ -238,7 +238,7 @@ swissServices.factory('CHART', ['$http', 'API_SERVER', 'Auth', function($http, A
             var token = Auth.get();
             var req = {
                 method: 'GET',
-                url: API_SERVER + 'ajax/charts/notes/' + companyId + '/' + companyKind,
+                url: API_SERVER + 'ajax/charts/notes/' + companyId + '/' + companyKind + '/?rnd=' + Math.random(),
                 headers: {'Accesstoken': token.hash}
                 //data: { test: 'test' }
             };
