@@ -413,6 +413,8 @@ swissServices.factory('CHART', ['$http', 'API_SERVER', 'Auth', function($http, A
             };
             $http(req).success(function(ret) {
                 var graphClass = cssClass ? cssClass : '.graphCustom';
+                var canvas = $(graphClass).find('canvas');
+                canvas.html('');
                 var ctx = ($(graphClass).find('canvas')).get(0).getContext("2d");
                 new Chart(ctx).Bar(ret.data, {});
             });
