@@ -369,7 +369,7 @@ swissServices.factory('CHART', ['$http', 'API_SERVER', 'Auth', function($http, A
                 var token = Auth.get();
                 var req = {
                         method: 'GET',
-                        url: API_SERVER + 'financials/report/collection/' + type + '/' + companyKind + '/' + companyId + '/A',
+                        url: API_SERVER + 'financials/report/collection/' + type + '/' + companyKind + '/' + companyId + '/A/?rnd=' + Math.random(),
                         headers: {'Accesstoken': token.hash}
                 };
                 $http(req).success(function(ret) {
@@ -406,7 +406,7 @@ swissServices.factory('CHART', ['$http', 'API_SERVER', 'Auth', function($http, A
             };
             var req = {
                     method: 'POST',
-                    url: API_SERVER + 'ajax/charts/custom',
+                    url: API_SERVER + 'ajax/charts/custom/?rnd=' + Math.random(),
                     headers: {'Accesstoken': token.hash, 'Content-Type': 'application/x-www-form-urlencoded'},
                     data: $.param({ dataCiq: dataCiq })
             };
