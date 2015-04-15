@@ -11,6 +11,12 @@ swissApp.config(['$routeProvider', function($routeProvider) {
         }).when('/logout', {
             templateUrl: 'partials/logout.html',
             controller: 'logoutController'
+        }).when('/offline', {
+            templateUrl: 'partials/offline.html',
+            controller: 'offlineController'
+        }).when('/forgot', {
+            templateUrl: 'partials/forgot.html',
+            controller: 'forgotController'
         }).when('/portfolio/:portfolioId?', {
             templateUrl: 'partials/portfolio.html',
             controller: 'portfolioController'

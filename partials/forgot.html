@@ -1,0 +1,28 @@
+<article class="homePage">
+
+    <section class="header">
+        <a class="logo" href="#home"></a>
+        <div class="arrow">
+            <div class="arrowMask"></div>
+        </div>
+    </section>    
+    
+    <section class="login forgot">
+        <div class="wrapperLogin">
+            <h1>Forgot your password?</h1>
+            <div ng-hide="reseted">
+                <h4>To reset your password, enter the email address you use to sign in to SwissMetrics. After that please check your email and follow the instructions.</h4>
+                <div class="loginError">{{loginError}}</div>
+                <div class="loading" ng-show="loading"></div>
+                <div class="boxLogin" ng-keypress="onKeyPress($event)" >
+                    <input type="text" name="email" id="loginEmail" placeholder="Your email" ng-model="fEmail">
+                </div>
+                <button type="button" class="loginButton" ng-click="forgotAction()">Submit</button>
+            </div>
+            <div ng-show="reseted">
+                <h4>The operation completed successfully.<br>Please check your email and follow the instructions.</h4>
+            </div>
+        </div>
+    </section>
+
+</article>

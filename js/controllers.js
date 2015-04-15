@@ -17,7 +17,12 @@ swissCntls.directive( 'backButton', function() {
 swissCntls.controller('loginController', ['$scope', '$location', 'Auth', 'REST', function($scope, $location, Auth, REST) {
 
     index.stickBottom();
-
+    
+    //if offline
+    if(!navigator.onLine){
+        $location.path('offline');
+    }
+   
     //if is logged redirect to portfolio
     var token = Auth.get();
     
@@ -45,6 +50,36 @@ swissCntls.controller('loginController', ['$scope', '$location', 'Auth', 'REST',
      };
 }]);
 
+//Forgot password
+swissCntls.controller('forgotController', ['$scope', '$location', 'Auth', 'REST', function($scope, $location, Auth, REST) {
+
+    index.stickBottom();
+    
+    $scope.forgotAction = function(){
+        $scope.loginError = '';
+        $scope.loading = true;
+        REST.Forgot().get({email: $scope.fEmail}, function(ret) {
+            $scope.loading = false;
+            if(ret.status == 'ok'){
+                $scope.reseted = true;
+                index.stickBottom();
+            }
+            else if (ret.status == 'redirect'){
+                $location.path('home');
+            }
+            else{
+                $scope.loginError = ret.error;
+            }
+        });
+    };
+
+    $scope.onKeyPress = function($event) {
+        if ($event.keyCode == 13) {
+           $scope.forgotAction();
+        }
+     };
+}]);
+
 //Logout
 swissCntls.controller('logoutController', ['$location', 'Auth', function($location, Auth) {
 
@@ -53,11 +88,27 @@ swissCntls.controller('logoutController', ['$location', 'Auth', function($locati
 
 }]);
 
+//Offline
+swissCntls.controller('offlineController', ['$location', function($location) {
+
+    //if online
+    if(navigator.onLine){
+        $location.path('home');
+    }
+     
+    index.stickBottom();
+}]);
+
 //Portfolio controller - my portfolios
 swissCntls.controller('portfolioListController', ['$scope', '$location', 'REST', function($scope, $location, REST) {
 
     $scope.portfolios = [];
-
+    
+    //if offline
+    if(!navigator.onLine){
+        $location.path('offline');
+    }
+    
     $scope.loading = true;
     REST.PortfolioList().get({}, function(ret) {
         if(ret.status == 'ok'){
@@ -79,7 +130,12 @@ swissCntls.controller('portfolioController', ['$scope', '$location', '$routePara
     $scope.companies = [];
     $scope.portfolios = [];
     $scope.select = {selected: null};  
-
+    
+    //if offline
+    if(!navigator.onLine){
+        $location.path('offline');
+    }
+    
     loadPortfolio = function(choosenPortfolio){
         $scope.loading = true;
         REST.Portfolio().get({portfolioId: choosenPortfolio}, function(ret) {
@@ -275,29 +331,41 @@ swissCntls.controller('reportRiskController', ['$scope', '$location', '$routePar
         }
     });
     
+    var kind = $routeParams.companyKind.toLowerCase();
+    
     //show zscore
     $scope.chartZscore = function(){
-        $scope.loadedZscore = CHART.getZscore($routeParams.companyId, $routeParams.companyKind.toLowerCase());
+        $scope.loadedZscore = CHART.getZscore($routeParams.companyId, kind);
     }; 
-    
     //show notes
     $scope.chartNotes = function(){
-        $scope.loadedNotes = CHART.getNotes($routeParams.companyId, $routeParams.companyKind.toLowerCase());
+        $scope.loadedNotes = CHART.getNotes($routeParams.companyId, kind);
     };
-    
     //show news
     $scope.chartNews = function(){
-        $scope.loadedNews = CHART.getNews($routeParams.companyId, $routeParams.companyKind.toLowerCase(), $scope.company.companyName);
+        $scope.loadedNews = CHART.getNews($routeParams.companyId, kind, $scope.company.companyName);
     };
-
     //show any ratio
     $scope.chartRatio = function(){
-        $scope.loadedRatio = CHART.getItems($routeParams.companyId, $routeParams.companyKind.toLowerCase(), 'ratio', $scope, 'first');
+        $scope.loadedRatio = CHART.getItems($routeParams.companyId, kind, 'ratio', $scope, 'first');
     };
-    
     //load new item for graph
     $scope.changeItem = function(){
         CHART.loadItem($scope.selectedItem, $scope.selectedItem, 'custom_mobile_graph', 'ratio', $scope);
+    };
+    
+    // CNONTROLLERS FOR PRIVATE
+    //show EBITDA Margin
+    $scope.chartEbitdaPriv = function(){
+        $scope.loadedEbitda = CHART.getItems($routeParams.companyId, kind, 'ratio', $scope, true, '.graphEbitdaPriv', 'ebitda');
+    };
+    //show Working Capital
+    $scope.chartWorkingPriv = function(){
+        $scope.loadedWorking = CHART.getItems($routeParams.companyId, kind, 'ratio', $scope, true, '.graphWorkingPriv', 'workingCapital');
+    };
+    //show Liquidity
+    $scope.chartLiquidityPriv = function(){
+        $scope.loadedLiquidity = CHART.getItems($routeParams.companyId, kind, 'ratio', $scope, true, '.graphLiquidityPriv', 'liquidity');
     };
     
 }]);
@@ -346,9 +414,27 @@ swissCntls.controller('reportPLController', ['$scope', '$location', '$routeParam
         CHART.loadItem($scope.selectedItem, $scope.selectedItem, 'custom_mobile_graph', 'income', $scope);
     };
     
-    //Private Companies
-    $scope.chartRevenuePriv = function(){
-        $scope.loadedRevenue = CHART.getItemsPriv($routeParams.companyId, kind, 'income', $scope, 28, '.graphRevenue');
+    // CNONTROLLERS FOR PRIVATE
+    //show EBITDA Margin
+    $scope.chartEbitdaPriv = function(){
+        $scope.loadedEbitda = CHART.getItems($routeParams.companyId, kind, 'income', $scope, true, '.graphEbitdaPriv', 'ebitda');
+    };
+    //show Net profit
+    $scope.chartNetPriv = function(){
+        $scope.loadedNet = CHART.getItems($routeParams.companyId, kind, 'income', $scope, true, '.graphNetPriv', 'plNetProfit');
+    };
+    //show choosen Item
+    $scope.chartIncomePriv = function(){
+        REST.PrivateItems().get({reportName: 'income'}, function(ret) {
+            if(ret.status == 'ok'){
+                $scope.selectedItem = 'totalRevenue';
+                $scope.names = ret.names;
+                CHART.getItems($routeParams.companyId, kind, 'income', $scope, true, null, null, $scope.changeItemPriv);
+            }
+        });
+    };
+    $scope.changeItemPriv = function(){
+        $scope.loadedIncome = CHART.loadItemPriv($scope.selectedItem, $scope, '.graphIncomePriv');
     };
     
 }]);
@@ -373,28 +459,49 @@ swissCntls.controller('reportBalanceController', ['$scope', '$location', '$route
         }
     });
 
+    var kind = $routeParams.companyKind.toLowerCase();
+    
     //show Quick ratio
     $scope.chartQuick = function(){
-        $scope.loadedQuick = CHART.getItems($routeParams.companyId, $routeParams.companyKind.toLowerCase(), 'balance', $scope, 4121, '.graphQuick');
+        $scope.loadedQuick = CHART.getItems($routeParams.companyId, kind, 'balance', $scope, 4121, '.graphQuick');
     };
-    
     //show Liquidity
     $scope.chartLiquidity = function(){
-        $scope.loadedLiquidity = CHART.getItems($routeParams.companyId, $routeParams.companyKind.toLowerCase(), 'balance', $scope, true, '.graphLiquidity', 'charts.loadLiquidity');
+        $scope.loadedLiquidity = CHART.getItems($routeParams.companyId, kind, 'balance', $scope, true, '.graphLiquidity', 'charts.loadLiquidity');
     };
-    
     //show Working Capital
     $scope.chartWorking = function(){
-        $scope.loadedWorking = CHART.getItems($routeParams.companyId, $routeParams.companyKind.toLowerCase(), 'balance', $scope, 4165, '.graphWorking');
+        $scope.loadedWorking = CHART.getItems($routeParams.companyId, kind, 'balance', $scope, 4165, '.graphWorking');
     };
-
     //show any ratio
     $scope.chartRatio = function(){
-        $scope.loadedRatio = CHART.getItems($routeParams.companyId, $routeParams.companyKind.toLowerCase(), 'balance', $scope, 'first');
+        $scope.loadedRatio = CHART.getItems($routeParams.companyId, kind, 'balance', $scope, 'first');
     };
-    
     //load new item for graph
     $scope.changeItem = function(){
         CHART.loadItem($scope.selectedItem, $scope.selectedItem, 'custom_mobile_graph', 'income', $scope);
+    };
+    
+    // CNONTROLLERS FOR PRIVATE
+    //show Quick ratio
+    $scope.chartQuickPriv = function(){
+        $scope.loadedQuick = CHART.getItems($routeParams.companyId, kind, 'balance', $scope, true, '.graphQuickPriv', 'quickRatio');
+    };
+    //show Liquidity
+    $scope.chartLiquidityPriv = function(){
+        $scope.loadedLiquidity = CHART.getItems($routeParams.companyId, kind, 'balance', $scope, true, '.graphLiquidityPriv', 'liquidity');
+    };
+    //show choosen Item
+    $scope.chartBalancePriv = function(){
+        REST.PrivateItems().get({reportName: 'balance'}, function(ret) {
+            if(ret.status == 'ok'){
+                $scope.selectedItem = 16; //Cash & cash equivalents
+                $scope.names = ret.names;
+                CHART.getItems($routeParams.companyId, kind, 'balance', $scope, true, null, null, $scope.changeItemPriv);
+            }
+        });
+    };
+    $scope.changeItemPriv = function(){
+        $scope.loadedBalance = CHART.loadItemPriv($scope.selectedItem, $scope, '.graphBalancePriv');
     };
 }]);

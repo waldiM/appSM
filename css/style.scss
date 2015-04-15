@@ -261,7 +261,7 @@ article.homePage{
         position:absolute;
         bottom:0;
         width: 100%;
-        button{
+        .button{
             color:#fff;
             font-size:$insertedFontSize;
             text-align: center;
@@ -269,9 +269,25 @@ article.homePage{
             border:none;
             background-color: $redColor;
             width: 100%;
+            display:block;
         }
     }
-
+    section.forgot{
+        input#loginEmail{
+            border-radius: $borderRadius $borderRadius $borderRadius $borderRadius;
+        }
+        h1{
+            padding: 60px 0 20px;
+        }
+        h4{
+            color:#eee;
+            font-size:1em;
+            margin:0;
+            padding:0 0 20px;
+            text-align: center;
+            font-weight:normal;
+        }
+    }
 }
 nav.companyManu{
     text-align: center;

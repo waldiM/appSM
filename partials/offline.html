@@ -1,7 +1,7 @@
-<article class="homePage logoutPage">
+<article class="homePage">
 
     <section class="header">
-        <a class="logo" href="#home"></a>
+        <div class="logo"></div>
         <div class="arrow">
             <div class="arrowMask"></div>
         </div>
@@ -9,8 +9,7 @@
     
     <section class="login">
         <div class="wrapperLogin">
-            <h1>You have been logged out</h1>
-            <a class="loginButton" href="#home">Log in</a>
+            <h1 ng-hide="online">You're offline</h1>
         </div>
     </section>
 

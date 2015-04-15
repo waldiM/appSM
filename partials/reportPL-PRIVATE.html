@@ -19,27 +19,13 @@
     <div class="boxes" ng-show="!loading">
         
         <div class="box">
-            <a class="bar" ng-click="(showRevenue || loadedRevenue) ? '' : chartRevenuePriv(); showRevenue = !showRevenue">
-                <span class="icon"><i class="fa fa-line-chart"></i></span>
-                <span class="title">Revenue</span>
-                <span class="arrow"><i class="fa" ng-class="{'fa-angle-up upArrow' : showRevenue, 'fa-angle-down' : !showRevenue}"></i></span>
-            </a>
-            <div class="collapse" ng-show="showRevenue">
-                <div class="graph graphRevenue">
-                    <div class="loading" ng-show="!loadingItems"></div>  
-                    <canvas width="400" height="200"></canvas>
-                </div>    
-            </div>
-        </div>
-    
-        <div class="box">
-            <a class="bar" ng-click="(showEbitda || loadedEbitda) ? '' : chartEbitda(); showEbitda = !showEbitda">
-                <span class="icon"><i class="fa fa-area-chart"></i></span>
+            <a class="bar" ng-click="(showEbitda || loadedEbitda) ? '' : chartEbitdaPriv(); showEbitda = !showEbitda">
+                <span class="icon"><i class="fa fa-bar-chart"></i></span>
                 <span class="title">EBITDA Margin</span>
                 <span class="arrow"><i class="fa" ng-class="{'fa-angle-up upArrow' : showEbitda, 'fa-angle-down' : !showEbitda}"></i></span>
             </a>
             <div class="collapse" ng-show="showEbitda">
-                <div class="graph graphEbitda">
+                <div class="graph graphEbitdaPriv">
                     <div class="loading" ng-show="!loadingItems"></div>  
                     <canvas width="400" height="200"></canvas>
                 </div>
@@ -47,13 +33,13 @@
         </div>
         
         <div class="box">
-            <a class="bar" ng-click="(showNet || loadedNet) ? '' : chartNet(); showNet = !showNet">
+            <a class="bar" ng-click="(showNet || loadedNet) ? '' : chartNetPriv(); showNet = !showNet">
                 <span class="icon"><i class="fa fa-signal"></i></span>
                 <span class="title">Net Profit</span>
                 <span class="arrow"><i class="fa" ng-class="{'fa-angle-up upArrow' : showNet, 'fa-angle-down' : !showNet}"></i></span>
             </a>
             <div class="collapse" ng-show="showNet">
-                <div class="graph graphNet">
+                <div class="graph graphNetPriv">
                     <div class="loading" ng-show="!loadingItems"></div>  
                     <canvas width="400" height="200"></canvas>
                 </div>
@@ -61,19 +47,19 @@
         </div>
         
         <div class="box">
-            <a class="bar" ng-click="(showRatio || loadedRatio) ? '' : chartRatio(); showRatio = !showRatio">
-                <span class="icon"><i class="fa fa-bar-chart"></i></span>
-                <span class="title">Choose item</span>
-                <span class="arrow"><i class="fa" ng-class="{'fa-angle-up upArrow' : showRatio, 'fa-angle-down' : !showRatio}"></i></span>
+            <a class="bar" ng-click="(showIncome || loadedIncome) ? '' : chartIncomePriv(); showIncome = !showIncome">
+                <span class="icon"><i class="fa fa-area-chart"></i></span>
+                <span class="title">Income Statement</span>
+                <span class="arrow"><i class="fa" ng-class="{'fa-angle-up upArrow' : showIncome, 'fa-angle-down' : !showIncome}"></i></span>
             </a>
-            <div class="collapse" ng-show="showRatio">
-                <div class="graph graphCustom">
-                    <div class="loading" ng-show="!loadingItems"></div>
-                    <select class="selectItem" ng-show="loadingItems" ng-change="changeItem()" ng-model="selectedItem">
-                        <option ng-repeat="item in items" value="{{item.id}}">{{item.label}}</option>
+            <div class="collapse" ng-show="showIncome">
+                <div class="graph graphCustom graphIncomePriv">
+                    <div class="loading" ng-show="!loadedIncome"></div>
+                    <select class="selectItem" ng-show="loadedIncome" ng-change="changeItemPriv()" ng-model="selectedItem">
+                        <option ng-show="name.private" ng-repeat="name in names" value="{{name.private}}">{{name.name}}</option>
                     </select>
                     <br>
-                    <canvas width="400" height="200"></canvas>
+                    <div class="canvas"></div>
                 </div>
             </div>
         </div>
@@ -81,4 +67,8 @@
     </div>
 </article>
 
-<script src="lib/chart/ChartNew.js"></script>
+<script>
+    $(function(){
+      $.getScript('lib/chart/ChartNew.js');  
+    });
+</script>
