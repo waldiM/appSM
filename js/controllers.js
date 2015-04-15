@@ -77,7 +77,7 @@ swissCntls.controller('forgotController', ['$scope', '$location', 'Auth', 'REST'
         if ($event.keyCode == 13) {
            $scope.forgotAction();
         }
-     };
+    };
 }]);
 
 //Logout
@@ -267,14 +267,17 @@ swissCntls.controller('companyDashboardController', ['$scope', '$location', '$ro
 //Company controller - detal info
 swissCntls.controller('companyController', ['$scope', '$location', '$routeParams', 'REST', function($scope, $location, $routeParams, REST) {
 
+    index.companyMenu();
+
     $scope.ret = {};
     $scope.loading = true;    
-
+    
     REST.Company().get({companyId: $routeParams.companyId, companyKind: $routeParams.companyKind}, function(ret) {
         if(ret.status == 'ok'){
             $scope.ret = ret.company;
             $scope.tickers = ret.ticker;
             $scope.loading = false;
+            $scope.company = {'companyId': $routeParams.companyId, 'companyKind': $routeParams.companyKind}
         }
         else{
             if(ret.logged == 'fail'){
@@ -309,7 +312,12 @@ swissCntls.controller('searchController', ['$scope', '$location', 'REST', functi
             });
         }
     };
-
+    
+    $scope.onKeyPress = function($event) {
+        if ($event.keyCode == 13) {
+           $scope.searchAction();
+        }
+    };
 }]);
 
 //Report controller - Risk summary

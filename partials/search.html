@@ -10,7 +10,7 @@
     
     <div class="enterTxt">
         <div class="error" ng-show="!searchedTxt">{{error}}</div>
-        <input type="text" placeholder="Company name" ng-model="searchedTxt">
+        <input type="text" placeholder="Company name" ng-model="searchedTxt" ng-keypress="onKeyPress($event)">
         <button type="button" ng-click="searchAction()">Search</button>
     </div>
     
@@ -19,7 +19,7 @@
     <div class="companies">
         <ul>    
             <li class="menuTab" ng-repeat="company in companies">
-                <a class="company" href="#company-dashboard/{{company.companyKind.id}}/{{company.companyKind.kind}}">
+                <a class="company" href="#company-dashboard/{{company.companyKind.id}}/{{company.companyKind.kind.toUpperCase()}}">
                     <img class="flag" ng-src="http://swiss-metrics.com/files/img/flags/24/{{company.company.isoCountry2.toLowerCase()}}.png" alt="">
                     <span>{{company.company.companyName}}</span>
                     <i class="fa fa-angle-right"></i>
