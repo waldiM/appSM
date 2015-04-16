@@ -491,8 +491,7 @@ swissServices.factory('CHART', ['$http', 'API_SERVER', 'Auth', function($http, A
             });
             
         },
-        
-        
+              
         //Private charts
         chartPriv: function(nameChart, $scope, cssClass){
             var token = Auth.get();
@@ -509,8 +508,6 @@ swissServices.factory('CHART', ['$http', 'API_SERVER', 'Auth', function($http, A
             });
             
         }
-        
-        
 
     };
     

@@ -17,9 +17,6 @@
  * under the License.
  */
 var index = {
-    
-    networkState: null,
-    
     // Application Constructor
     initialize: function() {
         this.bindEvents();
@@ -37,29 +34,12 @@ var index = {
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() {
         app.receivedEvent('deviceready');
-        app.checkConnection();
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
         //device is ready
     },
 
-    checkConnection: function() {
-        
-        var networkState = navigator.network.connection.type;
-
-        var states = {};
-        states[Connection.UNKNOWN]  = 'Unknown connection';
-        states[Connection.ETHERNET] = 'Ethernet connection';
-        states[Connection.WIFI]     = 'WiFi connection';
-        states[Connection.CELL_2G]  = 'Cell 2G connection';
-        states[Connection.CELL_3G]  = 'Cell 3G connection';
-        states[Connection.CELL_4G]  = 'Cell 4G connection';
-        states[Connection.NONE]     = -1;//'No network connection';
-        
-        index.networkState = states[networkState];
-    },
-    
     //resize home page in bottom 
     stickBottom: function(){
         $('article.homePage').height($(window).height());

@@ -18,11 +18,6 @@ swissCntls.controller('loginController', ['$scope', '$location', 'Auth', 'REST',
 
     index.stickBottom();
     
-    //if offline
-    if(index.networkState == -1){
-        $location.path('offline');
-    }
-   
     //if is logged redirect to portfolio
     var token = Auth.get();
     
@@ -32,15 +27,21 @@ swissCntls.controller('loginController', ['$scope', '$location', 'Auth', 'REST',
     
     $scope.loginAction = function(){
         $scope.loginError = '';
-        REST.Login().get({email: $scope.authEmail, password: $scope.authPassword}, function(ret) {
-            if(ret.status == 'ok'){
-                Auth.put(ret.data.token);
-                $location.path('portfolio');
+        REST.Login().get({email: $scope.authEmail, password: $scope.authPassword}, 
+            function(ret) {
+                if(ret.status == 'ok'){
+                    Auth.put(ret.data.token);
+                    $location.path('portfolio');
+                }
+                else{
+                    $scope.loginError = ret.error;
+                }
+            }, 
+            //connection error
+            function(){
+                $location.path('offline');
             }
-            else{
-                $scope.loginError = ret.error;
-            }
-        });
+        );
     };
 
     $scope.onKeyPress = function($event) {
@@ -51,7 +52,7 @@ swissCntls.controller('loginController', ['$scope', '$location', 'Auth', 'REST',
 }]);
 
 //Forgot password
-swissCntls.controller('forgotController', ['$scope', '$location', 'Auth', 'REST', function($scope, $location, Auth, REST) {
+swissCntls.controller('forgotController', ['$scope', '$location', 'REST', function($scope, $location, REST) {
 
     index.stickBottom();
     
@@ -81,7 +82,7 @@ swissCntls.controller('forgotController', ['$scope', '$location', 'Auth', 'REST'
 }]);
 
 //Logout
-swissCntls.controller('logoutController', ['$location', 'Auth', function($location, Auth) {
+swissCntls.controller('logoutController', ['Auth', function(Auth) {
 
     index.stickBottom();
     Auth.logout();
@@ -89,12 +90,12 @@ swissCntls.controller('logoutController', ['$location', 'Auth', function($locati
 }]);
 
 //Offline
-swissCntls.controller('offlineController', ['$location', function($location) {
+swissCntls.controller('offlineController', ['$location', 'REST', function($location, REST) {
 
-    //if online
-    if(index.networkState != -1){
+    REST.Login().get({email: '123', password: 'zxc'}, function() {
+        //redirect if is connection
         $location.path('home');
-    }
+    });
      
     index.stickBottom();
 }]);
@@ -104,23 +105,24 @@ swissCntls.controller('portfolioListController', ['$scope', '$location', 'REST',
 
     $scope.portfolios = [];
     
-    //if offline
-    if(index.networkState == -1){
-        $location.path('offline');
-    }
-    
     $scope.loading = true;
-    REST.PortfolioList().get({}, function(ret) {
-        if(ret.status == 'ok'){
-            $scope.portfolios = ret.portfolios;
-            $scope.loading = false;
-        }
-        else{
-            if(ret.logged == 'fail'){
-                $location.path('logout');
+    REST.PortfolioList().get({}, 
+        function(ret) {
+            if(ret.status == 'ok'){
+                $scope.portfolios = ret.portfolios;
+                $scope.loading = false;
             }
+            else{
+                if(ret.logged == 'fail'){
+                    $location.path('logout');
+                }
+            }
+        },
+        //connection error
+        function(){
+            $location.path('offline');
         }
-    });
+    );
 
 }]);
 
@@ -130,11 +132,6 @@ swissCntls.controller('portfolioController', ['$scope', '$location', '$routePara
     $scope.companies = [];
     $scope.portfolios = [];
     $scope.select = {selected: null};  
-    
-    //if offline
-    if(index.networkState == -1){
-        $location.path('offline');
-    }
     
     loadPortfolio = function(choosenPortfolio){
         $scope.loading = true;
