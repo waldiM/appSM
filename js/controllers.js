@@ -19,7 +19,7 @@ swissCntls.controller('loginController', ['$scope', '$location', 'Auth', 'REST',
     index.stickBottom();
     
     //if offline
-    if(!navigator.onLine){
+    if(index.networkState == -1){
         $location.path('offline');
     }
    
@@ -92,7 +92,7 @@ swissCntls.controller('logoutController', ['$location', 'Auth', function($locati
 swissCntls.controller('offlineController', ['$location', function($location) {
 
     //if online
-    if(navigator.onLine){
+    if(index.networkState != -1){
         $location.path('home');
     }
      
@@ -105,7 +105,7 @@ swissCntls.controller('portfolioListController', ['$scope', '$location', 'REST',
     $scope.portfolios = [];
     
     //if offline
-    if(!navigator.onLine){
+    if(index.networkState == -1){
         $location.path('offline');
     }
     
@@ -132,7 +132,7 @@ swissCntls.controller('portfolioController', ['$scope', '$location', '$routePara
     $scope.select = {selected: null};  
     
     //if offline
-    if(!navigator.onLine){
+    if(index.networkState == -1){
         $location.path('offline');
     }
     
