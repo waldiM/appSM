@@ -34,6 +34,16 @@ var index = {
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() {
         app.receivedEvent('deviceready');
+        
+        // PETEY'S SOLUTION, WRAPPED IN CODE TO CHECK FOR ANDROID PRE 4.2
+        // ALSO MODIFIED TO USE DEVICE PIXEL RATIO, INSTEAD OF CONTENTWIDTH
+        if( index.isAndroid() ) {
+            var matches = device.version.match( /[0-9]+(\.[0-9]+)?/i );
+
+            if( matches.length && parseFloat( matches[ 0 ] ) < 4.2 ) {
+                document.body.style.zoom = 1 / window.devicePixelRatio;
+            }
+        }
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
@@ -53,6 +63,14 @@ var index = {
         $('.popupMenu .barMenu').click(function(){
            $(this).parent('.popupMenu').hide();
         });
+    },
+    
+    isAndroid: function() {
+        if( device.platform.match( /android/i ) ) {    
+            return true;
+        }
+
+        return false;
     }
 };
 
