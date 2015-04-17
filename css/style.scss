@@ -88,7 +88,6 @@ li.menuTab{
     $paddingTop: 11px;
     border-bottom: 2px solid $borderColor;
     background-color:#fff;
-    min-height: $heightMenu;
     position:relative;
     .back{
         font-size: $fontSizeMenuNav;
@@ -210,7 +209,7 @@ article.homePage{
     }
     section.login{
         .wrapperLogin{
-            width:70%;
+            width:85%;
             margin:auto;
         }
         h1{
@@ -281,9 +280,9 @@ article.homePage{
         }
         h4{
             color:#eee;
-            font-size:1em;
+            font-size:1.2em;
             margin:0;
-            padding:0 0 20px;
+            padding:10px 0 10px;
             text-align: center;
             font-weight:normal;
         }
@@ -412,12 +411,12 @@ article.companyGeneral{
                 }
                 .graph{
                     text-align: center;
-                    margin:5px;
+                    padding:5px;
                 }
                 .graphZscore{
                     .chart{
-                        height:200px;
-                        width: 400px;
+                        height:160px;
+                        width: 320px;
                         margin:auto;
                     }
                 }
