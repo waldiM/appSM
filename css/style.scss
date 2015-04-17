@@ -1,13 +1,13 @@
 $menuColor: #282B33;
 $redColor:#eb0000;
-$insertedFontSize: 1.6em;
+$insertedFontSize: 1.5em;
 $borderColor: #E8E8E8;
 $oddColor: #f6f6f6;
 $fontSizeMenu: 1.5em;
 $fontSizeMenuNav: 2.2em;
 
 body{
-    font-size: 14px;
+    font-size: 10px;
     font-family: arial, verdena, sans-serif;
     margin:0;
     padding:0;
@@ -33,13 +33,13 @@ a{
     color:red;
     text-align: center;
     padding:5px 0;
-    font-size: 1.1em;
+    font-size: 1.2em;
 }
 .errorMessage{
     text-align: center;
     padding:20px 0;
     color:#444;
-    font-size: 1.1em;
+    font-size: 1.2em;
 }
 ul{
     margin:0;
@@ -84,8 +84,8 @@ li.menuTab{
     }
 }
 .subMenu{
-    $heightMenu: 55px;
-    $paddingTop: 10px;
+    $heightMenu: 48px;
+    $paddingTop: 11px;
     border-bottom: 2px solid $borderColor;
     background-color:#fff;
     min-height: $heightMenu;
@@ -103,7 +103,7 @@ li.menuTab{
         vertical-align: middle;
         padding:15px 0;
         white-space: nowrap;
-        width: 80%;
+        width: 70%;
         overflow: hidden;
         .name{
             color:#000;
@@ -149,10 +149,11 @@ nav.mainManu{
         color:#fff;
     }
     .logo{
-        background:url(../img/logo-white.png) no-repeat 50% 50%;
-        width:167px;
+        background:url(../img/logo-white.png) no-repeat 0% 50%;
+        background-size: 100%;
+        width:125px;
         height:48px;
-        margin:12px 10px 12px 15px;
+        margin:5px 2px 5px 10px;
     }
     .rightMenu{
         float:right;
@@ -160,8 +161,8 @@ nav.mainManu{
             background-color:#282828;
         }
         i{
-            padding: 22px 25px;
-            font-size: 2em;
+            padding: 19px 20px;
+            font-size: 1.8em;
         }
         .search{
             border-left:1px solid #222;
@@ -175,7 +176,7 @@ nav.mainManu{
 article.homePage{
     $borderInputs: #23242C;
     $borderRadius: 5px;
-    $inputPadding: 20px;
+    $inputPadding: 15px;
     background-color: $menuColor;
     position:relative;
     section.header{
@@ -196,7 +197,7 @@ article.homePage{
             $imgH: 20px;
             position:absolute;
             bottom: -$imgH;
-            left:49%;
+            left:45%;
             background: url(../img/login-mountains.jpg) no-repeat;
             width: $imgW;
             height: $imgH;
@@ -214,7 +215,7 @@ article.homePage{
         }
         h1{
             margin:0;
-            padding:60px 0 50px;
+            padding:50px 0 20px;
             text-align:center;
             color:#fff;
             font-size: 2em;
@@ -248,7 +249,7 @@ article.homePage{
             font-weight:bold;
             font-size:$insertedFontSize;
             text-align: center;
-            padding:15px;
+            padding:15px 0;
             border-radius: $borderRadius;
             border:2px solid $borderInputs;
             background-color: $redColor;
@@ -295,7 +296,7 @@ nav.companyManu{
         border:1px solid $borderColor;
         text-align: center;
         min-width: 150px;
-        margin: 0 0 15px 15px;
+        margin: 0 8px 16px 8px;
         background-color: #fff;
         &:hover{
             border-top:1px solid $redColor;
@@ -334,6 +335,10 @@ nav.companyManu{
     .companyMenu{
         background-color: $popBg;
         margin-left: 50px;
+        .box{
+            min-width: 140px;
+            margin: 0 3px 6px 3px;
+        }
     }
 }
 article.dashboard{
@@ -348,7 +353,7 @@ article.companyGeneral{
             margin:15px;
             border:1px solid $borderColor;
             .bar{
-                $heightBar: 80px;
+                $heightBar: 70px;
                 display:block;
                 background-color: #fff;
                 font-size:$fontSizeMenu;
@@ -390,7 +395,7 @@ article.companyGeneral{
                     }
                     .name{
                         font-weight: bold;
-                        min-width:150px;
+                        min-width:70px;
                         display: inline-block;
                     }
                 }
@@ -420,6 +425,7 @@ article.companyGeneral{
                     .selectItem{
                         margin:10px 0;
                         padding:10px 5px;
+                        max-width: 95%;
                     }
                 }
             }
@@ -453,7 +459,6 @@ article.noteRead{
         i{
             font-weight:bold;
             padding: 10px 10px;
-            vertical-align: middle;
         }
     }
     .note{
@@ -465,10 +470,10 @@ article.noteRead{
             background-color:$oddColor;
         }
         .avatar{
-            margin:0 10px;
+            margin:0 5px 0 10px;
             display:inline-block;
-            width:125px;
-            height:125px;
+            width:75px;
+            height:75px;
             border:2px solid $borderColor;
             border-radius: 6px;
             vertical-align: top;
@@ -479,16 +484,20 @@ article.noteRead{
             width: 65%;
             .date{
                 position:absolute;
-                right:10px;
-                top:10px;
+                right:7px;
+                top:13px;
                 color: #999;
             }
             .author{
-                font-size:$fontSizeMenu;
+                font-size:1.4em;
                 vertical-align: middle;
             }
             .message{
                 padding: 5px 4px 2px;
+                font-size:1.1em;
+                .text{
+                    padding:2px 0 0;
+                }
             }
         }
     }
@@ -496,24 +505,24 @@ article.noteRead{
 article.addNote{
     .inputSubject{
         display: inline-block;
-        width:96%;
-        padding:1%;
-        margin:1%;
+        width:92%;
+        padding:2%;
+        margin:2%;
         border:1px solid $borderColor;
         font-size: $insertedFontSize;
     }
     .inputTextarea{
         display: inline-block;
-        width:96%;
+        width:92%;
         height: 160px;
-        padding:1%;
-        margin:0 1% 1% 1%;
+        padding:2%;
+        margin:0 2% 2% 2%;
         border:1px solid $borderColor;
         font-size: $insertedFontSize;
     }
     .error{
         text-align: center;
-        padding: 20px 0 0;
+        padding: 8px 0 0;
     }
     .priority{
         margin: 0 0 0 1%;
@@ -545,16 +554,16 @@ article.searchCompany{
         border-bottom:2px solid $borderColor;
         background-color:$oddColor;
         display:block;
-        padding:10px 1%;
+        padding:5px 1% 10px;
         input{
-            border:2px solid $borderColor;
+            border:1px solid $borderColor;
             border-radius: 5px;
             font-size: $insertedFontSize;
             padding: 10px 1%;
             width:76%;
         }
         button{
-            border:2px solid $borderColor;
+            border:1px solid $borderColor;
             border-radius: 5px;
             font-size: $insertedFontSize;
             padding: 10px;

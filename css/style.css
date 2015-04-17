@@ -1,5 +1,5 @@
 body {
-  font-size: 14px;
+  font-size: 10px;
   font-family: arial, verdena, sans-serif;
   margin: 0;
   padding: 0;
@@ -24,13 +24,13 @@ a {
   color: red;
   text-align: center;
   padding: 5px 0;
-  font-size: 1.1em; }
+  font-size: 1.2em; }
 
 .errorMessage {
   text-align: center;
   padding: 20px 0;
   color: #444;
-  font-size: 1.1em; }
+  font-size: 1.2em; }
 
 ul {
   margin: 0;
@@ -69,11 +69,11 @@ li.menuTab {
 .subMenu {
   border-bottom: 2px solid #e8e8e8;
   background-color: #fff;
-  min-height: 55px;
+  min-height: 48px;
   position: relative; }
   .subMenu .back {
     font-size: 2.2em;
-    padding: 10px 15px;
+    padding: 11px 15px;
     display: inline-block;
     border-right: 1px solid #e8e8e8;
     background-color: #f6f6f6;
@@ -83,7 +83,7 @@ li.menuTab {
     vertical-align: middle;
     padding: 15px 0;
     white-space: nowrap;
-    width: 80%;
+    width: 70%;
     overflow: hidden; }
     .subMenu .info .name {
       color: #000;
@@ -103,8 +103,8 @@ li.menuTab {
       padding: 0 0 0 15px; }
   .subMenu .navCompany {
     float: right;
-    height: 45px;
-    padding: 10px 15px 0 15px;
+    height: 37px;
+    padding: 11px 15px 0 15px;
     background-color: #f6f6f6;
     border-left: 1px solid #e8e8e8;
     cursor: pointer; }
@@ -120,17 +120,18 @@ nav.mainManu {
     float: left;
     color: #fff; }
   nav.mainManu .logo {
-    background: url(../img/logo-white.png) no-repeat 50% 50%;
-    width: 167px;
+    background: url(../img/logo-white.png) no-repeat 0% 50%;
+    background-size: 100%;
+    width: 125px;
     height: 48px;
-    margin: 12px 10px 12px 15px; }
+    margin: 5px 2px 5px 10px; }
   nav.mainManu .rightMenu {
     float: right; }
     nav.mainManu .rightMenu a:hover {
       background-color: #282828; }
     nav.mainManu .rightMenu i {
-      padding: 22px 25px;
-      font-size: 2em; }
+      padding: 19px 20px;
+      font-size: 1.8em; }
     nav.mainManu .rightMenu .search {
       border-left: 1px solid #222; }
     nav.mainManu .rightMenu .list {
@@ -155,7 +156,7 @@ article.homePage {
     article.homePage section.header .arrow {
       position: absolute;
       bottom: -20px;
-      left: 49%;
+      left: 45%;
       background: url(../img/login-mountains.jpg) no-repeat;
       width: 40px;
       height: 20px; }
@@ -168,7 +169,7 @@ article.homePage {
     margin: auto; }
   article.homePage section.login h1 {
     margin: 0;
-    padding: 60px 0 50px;
+    padding: 50px 0 20px;
     text-align: center;
     color: #fff;
     font-size: 2em;
@@ -176,13 +177,13 @@ article.homePage {
   article.homePage section.login .boxLogin {
     background-color: #23242c;
     border-radius: 5px;
-    padding: 5px 45px 5px 5px; }
+    padding: 5px 35px 5px 5px; }
   article.homePage section.login input#loginEmail, article.homePage section.login input#loginPassword {
     border: medium none;
     display: block;
     margin: 0;
-    padding: 20px;
-    font-size: 1.6em;
+    padding: 15px;
+    font-size: 1.5em;
     border-radius: 5px 5px 0 0;
     width: 100%; }
   article.homePage section.login input#loginPassword {
@@ -193,9 +194,9 @@ article.homePage {
   article.homePage section.login .loginButton {
     color: #fff;
     font-weight: bold;
-    font-size: 1.6em;
+    font-size: 1.5em;
     text-align: center;
-    padding: 15px;
+    padding: 15px 0;
     border-radius: 5px;
     border: 2px solid #23242c;
     background-color: #eb0000;
@@ -208,7 +209,7 @@ article.homePage {
     width: 100%; }
     article.homePage section.forgotPassword .button {
       color: #fff;
-      font-size: 1.6em;
+      font-size: 1.5em;
       text-align: center;
       padding: 15px;
       border: none;
@@ -233,7 +234,7 @@ nav.companyManu {
     border: 1px solid #e8e8e8;
     text-align: center;
     min-width: 150px;
-    margin: 0 0 15px 15px;
+    margin: 0 8px 16px 8px;
     background-color: #fff; }
     nav.companyManu .box:hover {
       border-top: 1px solid #eb0000; }
@@ -265,6 +266,9 @@ nav.companyManu {
   .popupMenu .companyMenu {
     background-color: #3b3f4c;
     margin-left: 50px; }
+    .popupMenu .companyMenu .box {
+      min-width: 140px;
+      margin: 0 3px 6px 3px; }
 
 article.dashboard .boxesDashboard {
   padding: 15px 0 0; }
@@ -277,7 +281,7 @@ article.companyGeneral .boxes .box {
     display: block;
     background-color: #fff;
     font-size: 1.5em;
-    height: 80px;
+    height: 70px;
     cursor: pointer; }
     article.companyGeneral .boxes .box .bar .title {
       padding: 20px 0 0;
@@ -293,7 +297,7 @@ article.companyGeneral .boxes .box {
       padding: 18px 20px 0 20px;
       font-size: 2.2em;
       border-left: 1px solid #e8e8e8;
-      height: 62px; }
+      height: 52px; }
     article.companyGeneral .boxes .box .bar .arrow .upArrow {
       background-color: #f6f6f6; }
   article.companyGeneral .boxes .box .collapse {
@@ -307,7 +311,7 @@ article.companyGeneral .boxes .box {
         border: none; }
       article.companyGeneral .boxes .box .collapse .row .name {
         font-weight: bold;
-        min-width: 150px;
+        min-width: 70px;
         display: inline-block; }
     article.companyGeneral .boxes .box .collapse .rowTickers .name {
       float: left; }
@@ -324,7 +328,8 @@ article.companyGeneral .boxes .box {
       margin: auto; }
     article.companyGeneral .boxes .box .collapse .graphCustom .selectItem {
       margin: 10px 0;
-      padding: 10px 5px; }
+      padding: 10px 5px;
+      max-width: 95%; }
 
 .light {
   border-radius: 50%;
@@ -348,8 +353,7 @@ article.noteRead .addNew {
   display: block; }
   article.noteRead .addNew i {
     font-weight: bold;
-    padding: 10px 10px;
-    vertical-align: middle; }
+    padding: 10px 10px; }
 article.noteRead .note {
   padding: 10px 0;
   border-bottom: 1px solid #e8e8e8;
@@ -358,10 +362,10 @@ article.noteRead .note {
   article.noteRead .note:nth-child(even) {
     background-color: #f6f6f6; }
   article.noteRead .note .avatar {
-    margin: 0 10px;
+    margin: 0 5px 0 10px;
     display: inline-block;
-    width: 125px;
-    height: 125px;
+    width: 75px;
+    height: 75px;
     border: 2px solid #e8e8e8;
     border-radius: 6px;
     vertical-align: top;
@@ -371,39 +375,42 @@ article.noteRead .note {
     width: 65%; }
     article.noteRead .note .info .date {
       position: absolute;
-      right: 10px;
-      top: 10px;
+      right: 7px;
+      top: 13px;
       color: #999; }
     article.noteRead .note .info .author {
-      font-size: 1.5em;
+      font-size: 1.4em;
       vertical-align: middle; }
     article.noteRead .note .info .message {
-      padding: 5px 4px 2px; }
+      padding: 5px 4px 2px;
+      font-size: 1.1em; }
+      article.noteRead .note .info .message .text {
+        padding: 2px 0 0; }
 
 article.addNote .inputSubject {
   display: inline-block;
-  width: 96%;
-  padding: 1%;
-  margin: 1%;
+  width: 92%;
+  padding: 2%;
+  margin: 2%;
   border: 1px solid #e8e8e8;
-  font-size: 1.6em; }
+  font-size: 1.5em; }
 article.addNote .inputTextarea {
   display: inline-block;
-  width: 96%;
+  width: 92%;
   height: 160px;
-  padding: 1%;
-  margin: 0 1% 1% 1%;
+  padding: 2%;
+  margin: 0 2% 2% 2%;
   border: 1px solid #e8e8e8;
-  font-size: 1.6em; }
+  font-size: 1.5em; }
 article.addNote .error, article.addNote article.homePage section.login .loginError, article.homePage section.login article.addNote .loginError {
   text-align: center;
-  padding: 20px 0 0; }
+  padding: 8px 0 0; }
 article.addNote .priority {
   margin: 0 0 0 1%; }
   article.addNote .priority button {
     width: 33%;
     border: 1px solid #e8e8e8;
-    font-size: 1.6em;
+    font-size: 1.5em;
     margin: 0;
     padding: 20px 0;
     float: left; }
@@ -421,17 +428,17 @@ article.searchCompany .enterTxt {
   border-bottom: 2px solid #e8e8e8;
   background-color: #f6f6f6;
   display: block;
-  padding: 10px 1%; }
+  padding: 5px 1% 10px; }
   article.searchCompany .enterTxt input {
-    border: 2px solid #e8e8e8;
+    border: 1px solid #e8e8e8;
     border-radius: 5px;
-    font-size: 1.6em;
+    font-size: 1.5em;
     padding: 10px 1%;
     width: 76%; }
   article.searchCompany .enterTxt button {
-    border: 2px solid #e8e8e8;
+    border: 1px solid #e8e8e8;
     border-radius: 5px;
-    font-size: 1.6em;
+    font-size: 1.5em;
     padding: 10px;
     background-color: #fff;
     width: 20%; }

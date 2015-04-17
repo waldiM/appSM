@@ -444,7 +444,7 @@ swissServices.factory('CHART', ['$http', 'API_SERVER', 'Auth', function($http, A
                 var graphClass = cssClass ? cssClass : '.graphCustom';
                 var canvas = $(graphClass).find('.canvas');
                 canvas.find('canvas').remove();
-                canvas.html('<canvas width="400" height="200"></canvas>');
+                canvas.html('<canvas width="320" height="160"></canvas>');
                 var ctx = ($(graphClass).find('canvas')).get(0).getContext("2d");
                 new Chart(ctx).Bar(ret.data, {});
             });
@@ -463,7 +463,7 @@ swissServices.factory('CHART', ['$http', 'API_SERVER', 'Auth', function($http, A
                 var graphClass = cssClass ? cssClass : '.graphCustom';
                 var canvas = $(graphClass).find('.canvas');
                 canvas.find('canvas').remove();
-                canvas.html('<canvas width="400" height="200"></canvas>');
+                canvas.html('<canvas width="320" height="160"></canvas>');
                 var ctx = ($(graphClass).find('canvas')).get(0).getContext("2d");
                 new Chart(ctx).Bar(ret.data, {});
             });

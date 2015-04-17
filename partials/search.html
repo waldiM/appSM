@@ -9,7 +9,7 @@
     </div>
     
     <div class="enterTxt">
-        <div class="error" ng-show="!searchedTxt">{{error}}</div>
+        <div class="error"><span ng-show="!searchedTxt">{{error}}</span></div>
         <input type="text" placeholder="Company name" ng-model="searchedTxt" ng-keypress="onKeyPress($event)">
         <button type="button" ng-click="searchAction()">Search</button>
     </div>
