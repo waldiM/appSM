@@ -4,11 +4,7 @@ body {
   margin: 0;
   padding: 0;
   color: #555;
-  background-color: #F2F2F2;
-  -webkit-transform: scale(0.6, 0.6);
-  -moz-transform: scale(0.6, 0.6);
-  -ms-transform: scale(0.6, 0.6);
-  transform: scale(0.6, 0.6); }
+  background-color: #F2F2F2; }
 
 a {
   text-decoration: none;
