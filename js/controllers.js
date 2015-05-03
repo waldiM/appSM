@@ -155,6 +155,30 @@ swissCntls.controller('portfolioController', ['$scope', '$location', '$routePara
 
 }]);
 
+//Recent controller - recent view companies
+swissCntls.controller('recentController', ['$scope', '$location', 'REST', function($scope, $location, REST) {
+
+    $scope.companies = [];
+    $scope.loading = true;
+    
+    REST.Recent().get({}, function(ret) {
+        
+        if(ret.status == 'ok' && !ret.companies){
+            $location.path('portfolio');
+        }
+        else if(ret.status == 'ok'){
+            $scope.companies = ret.companies;
+            $scope.loading = false;
+        }
+        else{
+            if(ret.logged == 'fail'){
+                $location.path('logout');
+            }
+        }
+    });
+    
+}]);
+
 //Notes controller - read notes
 swissCntls.controller('notesReadController', ['$scope', '$location', '$routeParams', 'REST', function($scope, $location, $routeParams, REST) {
 

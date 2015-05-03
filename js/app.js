@@ -8,6 +8,9 @@ swissApp.config(['$routeProvider', function($routeProvider) {
         when('/home', {
             templateUrl: 'partials/home.html',
             controller: 'loginController'
+        }).when('/recent', {
+            templateUrl: 'partials/recent.html',
+            controller: 'recentController'
         }).when('/logout', {
             templateUrl: 'partials/logout.html',
             controller: 'logoutController'

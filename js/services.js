@@ -15,6 +15,13 @@ swissServices.factory('REST', ['$resource', 'API_SERVER', 'Auth', function($reso
                  get: {method:'POST', params:{email:null}}
             });
         },
+        // Recent view companies
+        Recent: function(){
+            var token = Auth.get();
+            return $resource(API_SERVER + 'api/rest/recent', {}, {
+                 get: {method:'GET', params:{}, headers: { 'Accesstoken': token.hash } }
+            });
+        },
         // portfolio
         Portfolio: function(){
             var token = Auth.get();
