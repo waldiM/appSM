@@ -577,7 +577,7 @@ article.searchCompany{
 article.newsRss {
     .score{
         float:left;
-        padding:0 10px 0;
+        padding:3px 10px 0;
         height: 40px;
         i{
             font-size: 1.8em;
@@ -592,7 +592,7 @@ article.newsRss {
     }
     .leftInfo{
         float:left;
-        width:90%;
+        width:80%;
         .newsTitle {
             a{
                 font-size: 1.4em;
@@ -600,7 +600,7 @@ article.newsRss {
             }
         }
         .newsDescription{
-            padding: 5px 0;
+            padding: 6px 0 7px;
         }
         .newsInfo{
             .newsSource{

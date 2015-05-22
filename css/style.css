@@ -446,7 +446,7 @@ article.searchCompany .enterTxt {
 
 article.newsRss .score {
   float: left;
-  padding: 0 10px 0;
+  padding: 3px 10px 0;
   height: 40px; }
   article.newsRss .score i {
     font-size: 1.8em;
@@ -457,12 +457,12 @@ article.newsRss .score {
     color: #e71f28; }
 article.newsRss .leftInfo {
   float: left;
-  width: 90%; }
+  width: 80%; }
   article.newsRss .leftInfo .newsTitle a {
     font-size: 1.4em;
     color: #555; }
   article.newsRss .leftInfo .newsDescription {
-    padding: 5px 0; }
+    padding: 6px 0 7px; }
   article.newsRss .leftInfo .newsInfo .newsSource {
     float: left;
     color: #999;
