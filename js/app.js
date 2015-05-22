@@ -32,6 +32,9 @@ swissApp.config(['$routeProvider', function($routeProvider) {
         }).when('/notes/:companyId/:companyKind', {
             templateUrl: 'partials/notesRead.html',
             controller: 'notesReadController'
+        }).when('/news/:companyId/:companyKind', {
+            templateUrl: 'partials/news.html',
+            controller: 'newsController'
         }).when('/company-dashboard/:companyId/:companyKind', {
             templateUrl: 'partials/companyDashboard.html',
             controller: 'companyDashboardController'

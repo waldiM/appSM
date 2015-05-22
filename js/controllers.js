@@ -1,4 +1,4 @@
-var swissCntls = angular.module('swissCntls', []);
+var swissCntls = angular.module('swissCntls', ['ngSanitize']);
 
 //history back
 swissCntls.directive( 'backButton', function() {
@@ -262,6 +262,29 @@ swissCntls.controller('addNoteController', ['$scope', '$routeParams', 'REST', fu
             
         }
     };
+    
+}]);
+
+//News controller - news and score (if are in db)
+swissCntls.controller('newsController', ['$scope', '$sce', '$location', '$routeParams', 'REST', 'NEWS', function($scope, $sce, $location, $routeParams, REST, NEWS) {
+
+    index.companyMenu();
+    
+    $scope.news = {};
+    $scope.company = {};
+    $scope.loading = true;    
+
+    REST.CompanyShort().get({companyId: $routeParams.companyId, companyKind: $routeParams.companyKind}, function(ret) {
+        if(ret.status == 'ok'){
+            $scope.company = ret.company;
+            NEWS.getNews($routeParams.companyId, $routeParams.companyKind.toLowerCase(), $scope.company.companyName, $scope);
+        }
+        else{
+            if(ret.logged == 'fail'){
+                $location.path('logout');
+            }
+        }
+    });
     
 }]);
 

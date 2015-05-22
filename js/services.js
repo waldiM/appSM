@@ -63,7 +63,7 @@ swissServices.factory('REST', ['$resource', 'API_SERVER', 'Auth', function($reso
             return $resource(API_SERVER + 'api/rest/addNote/:companyId/:companyKind', {companyId: '@companyId', companyKind:'@companyKind'}, {
                  save: {method:'POST', params:{subject: null, note: null, priority: null}, headers: { 'Accesstoken': token.hash } }
             });
-        },
+        },        
         // search company
         Search: function(){
             var token = Auth.get();
@@ -521,3 +521,26 @@ swissServices.factory('CHART', ['$http', 'API_SERVER', 'Auth', function($http, A
     return charts;
 }]);
 
+//news service
+swissServices.factory('NEWS', ['$http', 'API_SERVER', 'Auth', function($http, API_SERVER, Auth){
+    return {
+        // get news
+        getNews: function(companyId, companyKind, companyName, $scope){
+            var token = Auth.get();
+            var req = {
+                method: 'POST',
+                url: API_SERVER + 'ajax/rss/index/1',
+                headers: {'Accesstoken': token.hash, 'Content-Type': 'application/x-www-form-urlencoded'},
+                data: $.param({ companyId: companyId, companyKind: companyKind, query: companyName })
+            };
+            $http(req).success(function(ret) {
+                $scope.news = ret;
+                $scope.loading = false; 
+            });
+        }
+        
+    };
+}]);
+
+
+        

@@ -443,3 +443,33 @@ article.searchCompany .enterTxt {
     width: 20%; }
   article.searchCompany .enterTxt .error, article.searchCompany .enterTxt article.homePage section.login .loginError, article.homePage section.login article.searchCompany .enterTxt .loginError {
     padding: 0 0 5px; }
+
+article.newsRss .score {
+  float: left;
+  padding: 0 10px 0;
+  height: 40px; }
+  article.newsRss .score i {
+    font-size: 1.8em;
+    color: #5985a6; }
+  article.newsRss .score i.fa-thumbs-o-up {
+    color: #3cbc5d; }
+  article.newsRss .score i.fa-thumbs-o-down {
+    color: #e71f28; }
+article.newsRss .leftInfo {
+  float: left;
+  width: 90%; }
+  article.newsRss .leftInfo .newsTitle a {
+    font-size: 1.4em;
+    color: #555; }
+  article.newsRss .leftInfo .newsDescription {
+    padding: 5px 0; }
+  article.newsRss .leftInfo .newsInfo .newsSource {
+    float: left;
+    color: #999;
+    padding: 0 20px 0 0; }
+  article.newsRss .leftInfo .newsInfo .newsTime {
+    float: left;
+    color: #999; }
+  article.newsRss .leftInfo .newsInfo i {
+    padding: 1px 6px 0 0;
+    float: left; }

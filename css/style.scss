@@ -574,3 +574,48 @@ article.searchCompany{
         }
     }
 }
+article.newsRss {
+    .score{
+        float:left;
+        padding:0 10px 0;
+        height: 40px;
+        i{
+            font-size: 1.8em;
+            color: #5985a6;
+        }
+        i.fa-thumbs-o-up{
+            color: #3cbc5d;
+        }  
+        i.fa-thumbs-o-down{
+            color: #e71f28;
+        }  
+    }
+    .leftInfo{
+        float:left;
+        width:90%;
+        .newsTitle {
+            a{
+                font-size: 1.4em;
+                color:#555;
+            }
+        }
+        .newsDescription{
+            padding: 5px 0;
+        }
+        .newsInfo{
+            .newsSource{
+                float:left;
+                color:#999;
+                padding:0 20px 0 0; 
+            }
+            .newsTime{
+                float:left;
+                color:#999;
+            }
+            i{
+                padding: 1px 6px 0 0;
+                float:left;
+            }
+        }
+    }
+}

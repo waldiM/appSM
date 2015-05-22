@@ -1,0 +1,52 @@
+<div ng-include src="'menu.html'"></div>
+<article class="noteRead newsRss">
+    
+    <div class="subMenu">
+        <a class="back" href="" back-button><i class="fa fa-angle-left"></i></a>
+        <div class="info infoSubName">
+            <span class="name">{{company.companyName}}</span>
+            <span class="subName">News</span>
+        </div>
+        <div class="navCompany"><i class="fa fa-bars"></i></div>
+        <div class="popupMenu">
+            <div class="barMenu"><i class="fa fa-bars"></i>{{company.companyName}}</div>
+            <div class="companyMenu" ng-include src="'partials/companyMenu.html'"></div>
+        </div>
+    </div>
+    
+    <div class="loading" ng-show="loading"></div>
+
+    <div class="notes news" ng-show="!loading">
+        
+        <div class="errorMessage" ng-if="notes.length == 0">
+            There are no news for this company.
+        </div> 
+        
+        <div class="noteList newsList">
+            <div class="note" ng-repeat="n in news.content">
+                
+                <div class="newsRow">
+                    <div class="score">
+                        <i class="fa fa-thumbs-o-up" ng-if="n.sentimentType == 'positive'"></i>
+                        <i class="fa fa-thumbs-o-down" ng-if="n.sentimentType == 'negative'"></i>
+                        <i class="fa fa-hand-o-right" ng-if="n.sentimentType != 'positive' && n.sentimentType != 'negative'"></i>
+                    </div>
+                    <div class="leftInfo">
+                        <div class="newsTitle">
+                            <a data-toggle="tooltip" href="{{n.link}}" target="_blank">{{n.title}}</a>
+                        </div>
+                        <div class="newsDescription" ng-bind-html="n.description"></div>
+                        <div class="newsInfo">
+                            <div class="newsSource"><i class="fa fa-external-link"></i>{{n.source}}</div>
+                            <div class="newsTime"><i class="fa fa-clock-o"></i>{{n.newsDate}}</div>
+                            <div class="clear"></div>
+                        </div> 
+                    </div> 
+                    <div class="clear"></div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    
+</article>
